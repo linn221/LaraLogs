@@ -20,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::view('create-cat', "categories.create")->name('categories.create');
+Route::view('edit-cat', "categories.edit")->name('categories.edit');
+Route::view('index', "categories.index")->name('categories.index');
