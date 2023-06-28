@@ -10,7 +10,7 @@
 * [ ]
 
 ### Bugs
-* [ ]
+* [ ] bootstrap-icons not working
 
 ### UI 
 * [!] view files for category
