@@ -28,3 +28,5 @@ Route::view('cat', "categories.index")->name('categories.index');
 Route::view('create-log', "logs.create")->name('logs.create');
 Route::view('edit-log', "logs.edit")->name('logs.edit');
 Route::view('log', "logs.index")->name('logs.index');
+Route::view('log/1', "logs.show")->name('logs.show');
+
