@@ -1,6 +1,6 @@
 ### Functions
-* [!] migration table category, logs
-* [!] CRUD category, CRUD logs
+* [ ] migration table category, logs
+* [ ] CRUD category, CRUD logs
 * [ ]
 
 ### Refactor
@@ -13,7 +13,8 @@
 * [ ] bootstrap-icons not working
 
 ### UI 
-* [!] view files for category
-* [!] view files for logs
+* [ ] view files for category
+* [ ] view files for logs
 * [ ] convert select box to radio buttons (selecting category)
+* [ ] show something for empty cases
 * [ ]

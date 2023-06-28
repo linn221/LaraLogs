@@ -10,12 +10,44 @@
                     <a href="{{ route('categories.create') }}" class="btn btn-outline-dark">Create</a>
                 </div>
 
-                <table class=" table">
-                    <tr>
-                        <td>
-                            $category_name ($logs_count) (link to see logs under the category)
-                        </td>
-                    </tr>
+                <table class=" table table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Control</th>
+                        </tr>
+                        {{-- $category_name ($logs_count) (link to see logs under the category) --}}
+                    </thead>
+                    <tbody>
+                        @foreach ($categories as $category)
+                            <tr>
+                                <td>
+                                    {{ $category->id }}
+                                </td>
+                                <td>
+                                    {{ $category->name }}
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ route('categories.edit', $category->id) }}"
+                                            class="btn btn-sm btn-outline-success">
+                                            Edit
+                                        </a>
+                                        <form class=" d-inline-block"
+                                            action="{{ route('categories.destroy', $category->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-sm btn-outline-danger">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    </tbody>
                 </table>
                 <div class="">
                     {{-- {{ $categories->onEachSide(1)->links() }} --}}
