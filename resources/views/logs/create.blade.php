@@ -31,7 +31,7 @@
 
                 <select form="createLogForm" class=" form-select @error('cat') is-invalid @enderror " name="cat">
                     @foreach (App\Models\Category::all() as $category)
-                        <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>
+                        <option value="{{ $category->id }}" {{ old('cat') == $category->id ? 'selected' : '' }}>
                             {{ $category->name }}
                         </option>
                     @endforeach
