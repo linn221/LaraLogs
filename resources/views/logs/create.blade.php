@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('content')
+{{-- {{ $errors }} --}}
     <div class=" container-sm">
         <div class="row">
             <h3>Add New Log</h3>
             <hr>
-            <form action="{{ route('dummy') }}" id="createLogForm" method="post">
+            <form action="{{ route('logs.store') }}" id="createLogForm" method="post">
                 @csrf
             </form>
 
@@ -18,19 +19,18 @@
             </div>
 
             <div class="mb-3">
-                <label class=" form-label" for="">Body</label>
-                <textarea form="createLogForm" name="body" class=" form-control " rows="10">{{ old('body') }}</textarea>
+                <label class=" form-label" for="">Content</label>
+                <textarea form="createLogForm" name="content" class=" form-control " rows="10">{{ old('content') }}</textarea>
             </div>
             <div class="mb-3">
                 <label class=" form-label" for="">Select Category</label>
-                <select form="createLogForm" class=" form-select " name="category">
 
-                    {{-- @foreach (App\Models\Category::all() as $category)
-                            <option value="{{ $category->id }}"
-                                {{ old('category') == $category->id ? 'selected' : '' }}>
-                                {{ $category->title }}
-                            </option>
-                        @endforeach --}}
+                <select form="createLogForm" class=" form-select " name="cat">
+                @foreach (App\Models\Category::all() as $category)
+                    <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
 
                 </select>
             </div>

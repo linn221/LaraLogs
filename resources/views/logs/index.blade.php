@@ -7,7 +7,7 @@
                 <hr>
 
                 <div class=" mb-3">
-                    <a href="{{ route('dummy') }}" class="btn btn-outline-dark">New</a>
+                    <a href="{{ route('logs.create') }}" class="btn btn-outline-dark">New</a>
                 </div>
 
                 <table class=" table">
@@ -21,13 +21,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($logs as $log)
                         <tr>
-                            <td>1</td>
+                            <td>{{ $log->id }}</td>
                             <td>
-                                Log Title
+                                {{ $log->title }}
                                 <br>
                                 <span class=" small text-black-50">
-                                    Log Brief
+                                    {{ Str::limit($log->content, 30, '...') }}
                                     {{-- {{ Str::limit($category->description, 30, '...') }} --}}
                                 </span>
                             </td>
@@ -35,11 +36,11 @@
                             <td>
                                 <div class="btn-group">
 
-                                    <a class=" btn btn-sm btn-outline-dark" href="{{ route('logs.show') }}">
+                                    <a class=" btn btn-sm btn-outline-dark" href="{{ route('logs.show', $log->id) }}">
                                         show
                                         <i class=" bi bi-info"></i>
                                     </a>
-                                    <a href="{{ route('dummy') }}" class="btn btn-sm btn-outline-dark">
+                                    <a href="{{ route('logs.edit', $log->id) }}" class="btn btn-sm btn-outline-dark">
                                         Edit
                                         <i class=" bi bi-pencil"></i>
                                     </a>
@@ -50,7 +51,7 @@
                                     </button>
 
                                 </div>
-                                <form id="deleteForm" class=" d-inline-block" action="{{ route('dummy') }}" method="post">
+                                <form id="deleteForm" class=" d-inline-block" action="{{ route('logs.destroy', $log->id) }}" method="post">
                                     @method('delete')
                                     @csrf
 
@@ -60,28 +61,28 @@
                                 <p class=" small mb-0">
                                     <i class=" bi bi-clock"></i>
 
-                                    5:50
-                                    {{-- {{ $category->updated_at->format('h:i a') }} --}}
+                                    {{ $log->updated_at->format('h:i a') }}
                                 </p>
                                 <p class=" small mb-0">
                                     <i class=" bi bi-calendar"></i>
-                                    12 2 2012
-                                    {{-- {{ $category->updated_at->format('d M Y') }} --}}
+                                    {{ $log->updated_at->format('d M Y') }}
                                 </p>
 
                             </td>
                             <td>
                                 <p class=" small mb-0">
                                     <i class=" bi bi-clock"></i>
-                                    5:50
+
+                                    {{ $log->created_at->format('h:i a') }}
                                 </p>
                                 <p class=" small mb-0">
                                     <i class=" bi bi-calendar"></i>
-                                    12 2 2012
+                                    {{ $log->created_at->format('d M Y') }}
                                 </p>
-
                             </td>
                         </tr>
+                            
+                        @endforeach
                         {{-- <tr>
                                 <td colspan="6" class=" text-center">
                                     <p>

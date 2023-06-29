@@ -7,21 +7,21 @@
                 <hr>
 
                 <div class=" mb-3">
-                    <a href="{{ route('dummy') }}" class="btn btn-outline-dark">New</a>
-                    <a href="{{ route('dummy') }}" class="btn btn-outline-dark">All Logs</a>
+                    <a href="{{ route('logs.create') }}" class="btn btn-outline-dark">New</a>
+                    <a href="{{ route('logs.index') }}" class="btn btn-outline-dark">All Logs</a>
                 </div>
 
                 <div>
                     <h4>
-                        $log_title
+                        {{ $log->title }}
                     </h4>
                     <div class="">
                         <span class=" badge bg-black">
-                            $category
+                            {{ $log->category_id }}
                         </span>
                     </div>
                     <div class="">
-                        $body
+                        {{ $log->content }}
                     </div>
                 </div>
 
