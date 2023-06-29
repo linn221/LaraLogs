@@ -1,7 +1,7 @@
 ### Functions
-* [!] migration table category, logs
-* [!] CRUD category, CRUD logs
-* [ ] validation, repopulation
+* [x] migration table category, logs
+* [x] CRUD category, CRUD logs
+* [x] validation, repopulation, error messages
 * [ ] relationship, ($log->category instead of $log->category_id)
 
 ### Refactor
