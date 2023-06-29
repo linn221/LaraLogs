@@ -20,7 +20,7 @@
                         {{-- $category_name ($logs_count) (link to see logs under the category) --}}
                     </thead>
                     <tbody>
-                        @foreach ($categories as $category)
+                        @forelse ($categories as $category)
                             <tr>
                                 <td>
                                     {{ $category->id }}
@@ -45,7 +45,16 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="6" class=" text-center">
+                                    <p>
+                                        There is no record
+                                    </p>
+                                    <a class=" btn btn-sm btn-primary" href="{{ route('categories.create') }}">Create Category</a>
+                                </td>
+                            </tr>
+                        @endforelse
 
                     </tbody>
                 </table>
