@@ -19,5 +19,5 @@
 * [x] view files for logs
 * [ ] convert select box to radio buttons (selecting category)
 * [x] show something for empty cases
-* [ ] autofocus input
+* [x] autofocus input
 * [ ]

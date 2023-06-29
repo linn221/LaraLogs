@@ -13,7 +13,7 @@
                     <div class="mb-3">
                         <label class=" form-label" for="">Category Name</label>
                         <input type="text" class=" form-control @error('name') is-invalid @enderror"
-                            value="{{ old('name', $category->name) }}" name="name">
+                            value="{{ old('name', $category->name) }}" name="name" autofocus>
                         @error('name')
                             <div class=" invalid-feedback">{{ $message }}</div>
                         @enderror
