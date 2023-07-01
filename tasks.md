@@ -9,8 +9,8 @@
 
 ### Features
 * [ ] pagination
-* [ ] filter by category
-* [ ] search
+* [x] filter by category
+* [x] search
 * [ ] sort by id, updated, created, title
 * [ ] sort by id, updated, created, title (for category)
 * [ ] soft deleting, have a bin for admin to recycle or permentally delete
@@ -27,5 +27,5 @@
 * [x] show something for empty cases
 * [x] autofocus input
 * [ ] convert select box to radio buttons (selecting category)
-* [ ] clicking a category will go to log listing page, filtered by that selected category
+* [x] clicking a category will go to log listing page, filtered by that selected category
 * [ ] icons instead of dumb text
