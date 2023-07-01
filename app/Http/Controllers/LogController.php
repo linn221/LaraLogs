@@ -5,15 +5,26 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLogRequest;
 use App\Http\Requests\UpdateLogRequest;
 use App\Models\Log;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class LogController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $logs = Log::query()->latest('updated_at')->get();
+        $query = Log::query();
+        // search
+        // $search = $request->input('q');
+        $query->when($request->input('q'), function(Builder $query, string $q) {
+            $query->where('title', 'like', "%$q%")
+            ->orWhere('content', 'like', "%$q%");
+        });
+        // sorting
+        $logs = $query->latest('updated_at')->get();
+        // pagination
         return view('logs.index', compact('logs'));
         //
     }
