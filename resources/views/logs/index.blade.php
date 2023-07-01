@@ -42,16 +42,13 @@
                                     <div class="btn-group">
 
                                         <a class=" btn btn-sm btn-outline-dark" href="{{ route('logs.show', $log->id) }}">
-                                            show
                                             <i class=" bi bi-info"></i>
                                         </a>
                                         <a href="{{ route('logs.edit', $log->id) }}" class="btn btn-sm btn-outline-dark">
-                                            Edit
                                             <i class=" bi bi-pencil"></i>
                                         </a>
 
                                         <button form="deleteForm" class=" btn btn-sm btn-outline-dark">
-                                            Delete
                                             <i class=" bi bi-trash3"></i>
                                         </button>
 

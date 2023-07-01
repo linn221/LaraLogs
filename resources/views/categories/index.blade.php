@@ -27,25 +27,25 @@
                                     {{ $category->id }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('logs.index', ['cat' => $category->id]) }}">
-                                        {{ $category->name }}
-                                    </a>
+                                    {{ $category->name }}
                                 </td>
                                 <td>
-                                    {{ $category->logs()->count(); }}
+                                    <a href="{{ route('logs.index', ['cat' => $category->id]) }}">
+                                        {{ $category->logs()->count(); }}
+                                    </a>
                                 </td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ route('categories.edit', $category->id) }}"
-                                            class="btn btn-sm btn-outline-success">
-                                            Edit
+                                            class="btn btn-sm btn-outline-dark">
+                                            <i class=" bi bi-pencil"></i>
                                         </a>
                                         <form class=" d-inline-block"
                                             action="{{ route('categories.destroy', $category->id) }}" method="post">
                                             @csrf
                                             @method('delete')
-                                            <button class="btn btn-sm btn-outline-danger">
-                                                Delete
+                                            <button class="btn btn-sm btn-outline-dark">
+                                                <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
                                     </div>
