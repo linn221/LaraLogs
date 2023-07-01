@@ -13,7 +13,7 @@ class LogController extends Controller
      */
     public function index()
     {
-        $logs = Log::all();
+        $logs = Log::query()->latest('updated_at')->get();
         return view('logs.index', compact('logs'));
         //
     }
