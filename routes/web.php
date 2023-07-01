@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CoffeeController;
 use App\Http\Controllers\LogController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('/categories', CategoryController::class);
 Route::resource('/logs', LogController::class);
+
+// testing
+Route::get('/test', CoffeeController::class)->name('test');
 
 // Route::view('create-cat', "categories.create")->name('categories.create');
 // Route::view('edit-cat', "categories.edit")->name('categories.edit');
