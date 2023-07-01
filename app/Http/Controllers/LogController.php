@@ -16,11 +16,14 @@ class LogController extends Controller
     public function index(Request $request)
     {
         $query = Log::query();
-        // search
-        // $search = $request->input('q');
+        // searching
         $query->when($request->input('q'), function(Builder $query, string $q) {
             $query->where('title', 'like', "%$q%")
             ->orWhere('content', 'like', "%$q%");
+        });
+        // filter
+        $query->when($request->input('cat'), function(Builder $query, int $id) {
+            $query->where('category_id', $id);
         });
         // sorting
         $logs = $query->latest('updated_at')->get();
