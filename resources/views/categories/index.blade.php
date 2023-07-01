@@ -15,6 +15,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
+                            <th>Logs</th>
                             <th>Control</th>
                         </tr>
                         {{-- $category_name ($logs_count) (link to see logs under the category) --}}
@@ -27,6 +28,9 @@
                                 </td>
                                 <td>
                                     {{ $category->name }}
+                                </td>
+                                <td>
+                                    {{ $category->logs()->count(); }}
                                 </td>
                                 <td>
                                     <div class="btn-group">
