@@ -15,6 +15,7 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Category</th>
                             <th>Control</th>
                             <th>Updated At</th>
                             <th>Created At</th>
@@ -31,6 +32,10 @@
                                         {{ Str::limit($log->content, 30, '...') }}
                                         {{-- {{ Str::limit($category->description, 30, '...') }} --}}
                                     </span>
+                                </td>
+
+                                <td>
+                                    {{ $log->category->name; }}
                                 </td>
 
                                 <td>

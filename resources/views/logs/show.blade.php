@@ -17,7 +17,7 @@
                     </h4>
                     <div class="">
                         <span class=" badge bg-black">
-                            {{ $log->category_id }}
+                            {{ $log->category->name }}
                         </span>
                     </div>
                     <div class="">
