@@ -6,8 +6,19 @@
                 <h3>Logs</h3>
                 <hr>
 
+                
                 <div class=" mb-3">
-                    <a href="{{ route('logs.create') }}" class="btn btn-outline-dark">New</a>
+                    <a href="{{ route('logs.create') }}" class="btn btn-outline-primary">New</a>
+                </div>
+                <div class=" search-form mb-3 w-25">
+                    <form action="" class="">
+                        <div class="input-group">
+                            <input type="text" class=" form-control" name="q" value="{{ request()->q }}">
+                            <button class=" btn btn-dark">
+                                <i class=" bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
                 <table class=" table">
@@ -35,7 +46,7 @@
                                 </td>
 
                                 <td>
-                                    {{ $log->category->name; }}
+                                    {{ $log->category->name }}
                                 </td>
 
                                 <td>
