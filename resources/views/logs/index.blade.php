@@ -20,6 +20,9 @@
                         </div>
                     </form>
                 </div>
+                <div class="">
+                    {{ $logs->onEachSide(1)->links() }}
+                </div>
 
                 <table class=" table">
                     <thead>

@@ -25,9 +25,8 @@ class LogController extends Controller
         $query->when($request->input('cat'), function(Builder $query, int $id) {
             $query->where('category_id', $id);
         });
-        // sorting
-        $logs = $query->latest('updated_at')->get();
-        // pagination
+        // sorting & pagination
+        $logs = $query->latest('updated_at')->paginate(10)->withQueryString();
         return view('logs.index', compact('logs'));
         //
     }
