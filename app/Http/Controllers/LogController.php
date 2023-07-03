@@ -51,7 +51,7 @@ class LogController extends Controller
         $log->content = $request->input('content');
         $log->category_id = $request->input('cat');
         $log->save();
-        return redirect()->route('logs.index');
+        return redirect()->route('logs.index')->with(['status' => 'Log created successfully']);
         //
     }
 
@@ -82,7 +82,8 @@ class LogController extends Controller
         $log->content = $request->input('content');
         $log->category_id = $request->input('cat');
         $log->save();
-        return redirect()->route('logs.index');
+        // return redirect()->route('logs.index');
+        return redirect()->route('logs.index')->with(['status' => 'Log updated successfully', 'status-color' => 'warning']);
         //
     }
 
@@ -92,7 +93,8 @@ class LogController extends Controller
     public function destroy(Log $log)
     {
         $log->delete();
-        return redirect()->route('logs.index');
+        return redirect()->route('logs.index')->with(['status' => 'Log removed successfully', 'status-color' => 'danger']);
+        // return redirect()->route('logs.index');
         //
     }
 }

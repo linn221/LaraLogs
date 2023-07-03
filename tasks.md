@@ -7,13 +7,13 @@
 * [ ] don't give guest users write access to resources
 
 ### Refactor
-* [ ]
+* [ ] Eager loading for category of log
 
 ### Features
-* [ ] pagination
+* [!] pagination
 * [x] filter by category
 * [x] search
-* [!] add status
+* [x] add status
 * [!] order by column
 * [ ] fileter by updated, created date
 * [ ] sort by id, updated, created, title
