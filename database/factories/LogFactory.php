@@ -18,7 +18,7 @@ class LogFactory extends Factory
     {
         return [
             'title' => fake()->sentence(),
-            'content' => fake()->paragraph(),
+            'content' => fake()->paragraph(30),
             'category_id' => rand(1, 5)
         ];
     }
