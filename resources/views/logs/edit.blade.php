@@ -23,28 +23,24 @@
                 <label class=" form-label" for="">Content</label>
                 <textarea form="createLogForm" name="content" class=" form-control @error('content') is-invalid @enderror "
                     rows="10">{{ old('content', $log->content) }}</textarea>
-                    @error('content')
+                @error('content')
                     <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-            </div>
-            <div class="mb-3">
-                <label class=" form-label" for="">Select Category</label>
-
-                <select form="createLogForm" class=" form-select @error('cat') is-invalid @enderror " name="cat">
-                    @foreach (App\Models\Category::all() as $category)
-                        <option value="{{ $category->id }}"
-                            {{ old('cat', $log->category_id) == $category->id ? 'selected' : '' }}>
-                            {{ $category->name }}
-                        </option>
-                    @endforeach
-
-                </select>
-                @error('cat')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
                 @enderror
             </div>
+
+            <div class="mb-3">
+                @foreach (App\Models\Category::all() as $category)
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="{{ "cat-$category->id" }}" name='cat'
+                            form="createLogForm" value="{{ $category->id }}"
+                            {{ old('cat', $log->category_id) == $category->id ? 'checked' : '' }}>
+                        <label class="form-check-label" for="{{ "cat-$category->id" }}">
+                            {{ $category->name }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+
             <div class="mb-3">
                 <button form="createLogForm" class=" w-100 d-block btn btn-primary">Save Log</button>
             </div>
