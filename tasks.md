@@ -3,7 +3,7 @@
 * [x] CRUD category, CRUD logs
 * [x] validation, repopulation, error messages
 * [x] relationship, ($log->category instead of $log->category_id)
-* [!] seeding
+* [x] seeding
 
 ### Refactor
 * [ ]
