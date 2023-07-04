@@ -24,7 +24,9 @@ class StoreLogRequest extends FormRequest
         return [
             'title' => 'required|min:3|max:100',
             'content' => 'required|min:20',
-            'cat' => 'required|exists:categories,id'
+            'cat' => 'required|exists:categories,id',
+            'tags' => 'required|array',
+            'tags.*' => 'exists:tags,id'
             //
         ];
     }

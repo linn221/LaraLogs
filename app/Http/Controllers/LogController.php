@@ -50,6 +50,10 @@ class LogController extends Controller
         $log->content = $request->input('content');
         $log->category_id = $request->input('cat');
         $log->save();
+        // tags
+        if ($request->has('tags')) {
+            $log->tags()->attach($request->input('tags'));
+        }
         return redirect()->route('logs.index')->with(['status' => 'Log created successfully']);
         //
     }
