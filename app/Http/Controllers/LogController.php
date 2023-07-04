@@ -85,6 +85,7 @@ class LogController extends Controller
         $log->content = $request->input('content');
         $log->category_id = $request->input('cat');
         $log->save();
+        $log->tags()->sync($request->input('tags'));
         // return redirect()->route('logs.index');
         return redirect()->route('logs.index')->with(['status' => 'Log updated successfully', 'status-color' => 'warning']);
         //
