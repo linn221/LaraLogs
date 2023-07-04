@@ -6,7 +6,7 @@
                 <h3>Logs</h3>
                 <hr>
 
-                
+
                 <div class=" mb-3">
                     <a href="{{ route('logs.create') }}" class="btn btn-outline-primary">New</a>
                 </div>
@@ -30,6 +30,7 @@
                             <th>#</th>
                             <th>Title</th>
                             <th>Category</th>
+                            <th>Tags</th>
                             <th>Control</th>
                             <th>Updated At</th>
                             <th>Created At</th>
@@ -38,9 +39,15 @@
                     <tbody>
                         @forelse ($logs as $log)
                             <tr>
-                                <td>{{ $log->id }}</td>
                                 <td>
-                                    {{ $log->title }}
+                                    <a href="{{ route('logs.show', $log->id) }}" class="">
+                                        {{ $log->id }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('logs.edit', $log->id) }}" class=" text-decoration-none text-dark ">
+                                        {{ $log->title }}
+                                    </a>
                                     <br>
                                     <span class=" small text-black-50">
                                         {{ Str::limit($log->content, 30, '...') }}
@@ -49,9 +56,20 @@
                                 </td>
 
                                 <td>
-                                    {{ $log->category->name }}
+                                    <a href="{{ route('logs.index', ['cat' => $log->category_id]) }}"
+                                        class=" text-decoration-none text-dark ">
+                                        {{ $log->category->name }}
+                                    </a>
                                 </td>
 
+                                <td>
+                                    {{-- copy & paste proudly from show view --}}
+                                    @foreach ($log->tags->pluck('name')->toArray() as $tag_name)
+                                        <a href="#" class=" text-decoration-none">
+                                            {{ "#$tag_name" }}
+                                        </a>
+                                    @endforeach
+                                </td>
                                 <td>
                                     <div class="btn-group">
 

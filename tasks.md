@@ -27,6 +27,7 @@
 * [!] add pictures
 * [ ] add slug
 * [ ] add visitors
+* [ ] previous, next button on show page
 
 ### Bugs
 * [x] bootstrap-icons not working
@@ -47,3 +48,4 @@
 * [ ] show the log once clicked on the title
 * [x] add edit button in show page
 * [ ] don't let guest users see admin tasks
+* [ ] icons at nav-bar and other relevant places

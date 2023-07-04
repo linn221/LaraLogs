@@ -37,13 +37,8 @@
                     @endif
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('categories.index') }}" class="nav-link">
-                            View Categories
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('categories.create') }}" class="nav-link">
-                            Create Categories
+                        <a href="{{ route('logs.create') }}" class="nav-link">
+                            New Log
                         </a>
                     </li>
 
@@ -52,9 +47,15 @@
                             See Logs
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a href="{{ route('logs.create') }}" class="nav-link">
-                            New Log
+                        <a href="{{ route('categories.index') }}" class="nav-link">
+                            View Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('categories.create') }}" class="nav-link">
+                            Create Categories
                         </a>
                     </li>
 
