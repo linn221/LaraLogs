@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tag;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -31,6 +32,6 @@ class TagSeeder extends Seeder
                 'name' => $tag
             ];
         }
-        Tag::create($tags_array);
+        Tag::insert($tags_array);
     }
 }
