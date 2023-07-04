@@ -27,29 +27,33 @@
                 @enderror
             </div>
             <div class="mb-3">
-
+                <label class=" form-label" for="">Category</label>
+                <br>
                 @foreach (App\Models\Category::all() as $category)
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="{{ "cat-$category->id" }}" name='cat'
-                            form="createLogForm" value="{{ $category->id }}"
-                            {{ old('cat') == $category->id ? 'checked' : '' }}>
+                        <input class="form-check-input" type="radio" id="{{ "cat-$category->id" }}" form="createLogForm"
+                            name='cat' value="{{ $category->id }}" {{ old('cat') == $category->id ? 'checked' : '' }}>
                         <label class="form-check-label" for="{{ "cat-$category->id" }}">
                             {{ $category->name }}
                         </label>
                     </div>
                 @endforeach
             </div>
-            {{-- radio to fail the validation --}}
-            {{-- <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="fail" name='cat' form="createLogForm"
-                    value="fail">
-                <label class="form-check-label" for="fail">
-                    fail
-                </label>
-            </div> --}}
-            {{-- <option value="{{ $category->id }}" {{ old('cat') == $category->id ? 'selected' : '' }}>
-                            {{ $category->name }}
-                        </option> --}}
+
+            <div class="mb-3">
+                <label class=" form-label" for="">Tags:</label>
+                <br>
+                @foreach (App\Models\Tag::all() as $tag)
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="{{ "tag-$tag->id" }}" form="createLogForm"
+                            name="tags[]" value="{{ $tag->id }}"
+                            {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="{{ "tag-$tag->id" }}">
+                            {{ $tag->name }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
 
         </div>
         <div class="mb-3">

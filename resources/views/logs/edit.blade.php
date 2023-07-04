@@ -42,6 +42,21 @@
             </div>
 
             <div class="mb-3">
+                <label class=" form-label" for="">Tags:</label>
+                <br>
+                @foreach (App\Models\Tag::all() as $tag)
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="{{ "tag-$tag->id" }}" form="createLogForm"
+                            name="tags[]" value="{{ $tag->id }}"
+                            {{ in_array($tag->id, old('tags', $log->Tags)) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="{{ "tag-$tag->id" }}">
+                            {{ $tag->name }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+
+            <div class="mb-3">
                 <button form="createLogForm" class=" w-100 d-block btn btn-primary">Save Log</button>
             </div>
         </div>
