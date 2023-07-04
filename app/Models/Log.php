@@ -12,4 +12,8 @@ class Log extends Model
     public function Category() {
         return $this->belongsTo(Category::class);
     }
+
+    public function Tags() {
+        return $this->belongsToMany(Tag::class);
+    }
 }

@@ -13,7 +13,7 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = ['World', 'Food', 'IT', 'Hacking', 'Crime'];
+        $categories = ['Frontend', 'Backend', 'Server'];
         $categores_array = [];
         foreach($categories as $category) {
             $categores_array[] = [

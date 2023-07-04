@@ -5,23 +5,25 @@
 * [x] relationship, ($log->category instead of $log->category_id)
 * [x] seeding
 * [ ] don't give guest users write access to resources
+* [ ] distinct admin routes and reader route
 
 ### Refactor
 * [ ] Eager loading for category of log
 
 ### Features
-* [!] pagination
+* [x] pagination
 * [x] filter by category
 * [x] search
 * [x] add status
-* [!] order by column
 * [ ] fileter by updated, created date
 * [ ] sort by id, updated, created, title
 * [ ] sort by id, updated, created, title (for category)
 * [ ] soft deleting, have a bin for admin to recycle or permentally delete
 * [ ] deleting a category will give an option to delete related logs, or put them into archived
-* [ ] add tags, of course
-* [ ] add pictures
+* [!] add tags, of course
+* [!] filter by tag
+* [!] order by column
+* [!] add pictures
 * [ ] add slug
 * [ ] add visitors
 
@@ -39,6 +41,7 @@
 * [x] convert select box to radio buttons (selecting category)
 * [x] clicking a category will go to log listing page, filtered by that selected category
 * [x] icons instead of dumb text
-* [ ] pagination links at the top, aligned right with search bar
+* [x] pagination links at the top, aligned right with search bar
 * [ ] inform how many items are found with search
+* [ ] show the log once clicked on the title
 * [ ] don't let guest users see admin tasks
