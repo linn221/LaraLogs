@@ -59,6 +59,17 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{ route('tags.index') }}" class="nav-link">
+                            View Tags
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('tags.create') }}" class="nav-link">
+                            Create Tags
+                        </a>
+                    </li>
+
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

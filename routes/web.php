@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CoffeeController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('/categories', CategoryController::class);
 Route::resource('/logs', LogController::class);
+Route::resource('/tags', TagController::class);
 
 // testing
 Route::get('/test', CoffeeController::class)->name('test');

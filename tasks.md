@@ -7,6 +7,7 @@
 * [ ] add routes for CRUD actions of tags
 * [ ] don't give guest users write access to resources
 * [ ] distinct admin routes and reader route
+* [ ] add route = /categories/server and /tags/php
 
 ### Refactor
 * [ ] Eager loading for category of log
