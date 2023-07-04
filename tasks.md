@@ -4,6 +4,7 @@
 * [x] validation, repopulation, error messages
 * [x] relationship, ($log->category instead of $log->category_id)
 * [x] seeding
+* [ ] add routes for CRUD actions of tags
 * [ ] don't give guest users write access to resources
 * [ ] distinct admin routes and reader route
 
@@ -20,7 +21,7 @@
 * [ ] sort by id, updated, created, title (for category)
 * [ ] soft deleting, have a bin for admin to recycle or permentally delete
 * [ ] deleting a category will give an option to delete related logs, or put them into archived
-* [!] add tags, of course
+* [x] add tags, of course
 * [!] filter by tag
 * [!] order by column
 * [!] add pictures
@@ -44,4 +45,5 @@
 * [x] pagination links at the top, aligned right with search bar
 * [ ] inform how many items are found with search
 * [ ] show the log once clicked on the title
+* [x] add edit button in show page
 * [ ] don't let guest users see admin tasks
