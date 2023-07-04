@@ -44,11 +44,12 @@
             <div class="mb-3">
                 <label class=" form-label" for="">Tags:</label>
                 <br>
+                {{-- {{ dd($log->tags->pluck('id')) }} --}}
                 @foreach (App\Models\Tag::all() as $tag)
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="{{ "tag-$tag->id" }}" form="createLogForm"
                             name="tags[]" value="{{ $tag->id }}"
-                            {{ in_array($tag->id, old('tags', $log->Tags->toArray())) ? 'checked' : '' }}>
+                            {{ in_array($tag->id, old('tags', $log->tags->pluck('id')->toArray())) ? 'checked' : '' }}>
                         <label class="form-check-label" for="{{ "tag-$tag->id" }}">
                             {{ $tag->name }}
                         </label>
