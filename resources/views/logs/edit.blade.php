@@ -48,7 +48,7 @@
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="{{ "tag-$tag->id" }}" form="createLogForm"
                             name="tags[]" value="{{ $tag->id }}"
-                            {{ in_array($tag->id, old('tags', $log->Tags)) ? 'checked' : '' }}>
+                            {{ in_array($tag->id, old('tags', $log->Tags->toArray())) ? 'checked' : '' }}>
                         <label class="form-check-label" for="{{ "tag-$tag->id" }}">
                             {{ $tag->name }}
                         </label>
