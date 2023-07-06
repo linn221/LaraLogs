@@ -30,7 +30,7 @@
                                     {{ $category->name }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('logs.index', ['cat' => $category->id]) }}">
+                                    <a href="{{ route('logs.index.category', $category->id) }}">
                                         {{ $category->logs()->count(); }}
                                     </a>
                                 </td>

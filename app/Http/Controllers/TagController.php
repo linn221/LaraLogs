@@ -21,7 +21,7 @@ class TagController extends Controller
     }
 
 
-    public function showLogs(Tag $tag, Request $request)
+    public function showLogs(Request $request, Tag $tag)
     {
         $query = $tag->logs();
         // searching

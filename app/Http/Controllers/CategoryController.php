@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -77,5 +78,19 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('categories.index');
         //
+    }
+
+    public function showLogs(Request $request, Category $category)
+    {
+        $query = $category->logs();
+        // searching
+        $query->when($request->input('q'), function(Builder $query, string $q) {
+            $query->where('title', 'like', "%$q%")
+            ->orWhere('content', 'like', "%$q%");
+        });
+        // sorting & pagination
+        $sort = 'updated_at';
+        $logs = $query->latest($sort)->paginate(10)->withQueryString();
+        return view('logs.index', compact('logs'));
     }
 }

@@ -29,7 +29,7 @@ Route::resource('/categories', CategoryController::class);
 Route::resource('/logs', LogController::class);
 Route::resource('/tags', TagController::class);
 Route::get('/tags/{tag}', [TagController::class, 'showLogs'])->name('logs.index.tag');
-
+Route::get('/categories/{category}', [CategoryController::class, 'showLogs'])->name('logs.index.category');
 // testing
 Route::get('/test', CoffeeController::class)->name('test');
 

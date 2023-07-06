@@ -102,21 +102,4 @@ class LogController extends Controller
         // return redirect()->route('logs.index');
         //
     }
-
-    public function tag(Request $request, Tag $tag) {
-        $query = $tag->logs();
-        // searching
-        $query->when($request->input('q'), function(Builder $query, string $q) {
-            $query->where('title', 'like', "%$q%")
-            ->orWhere('content', 'like', "%$q%");
-        });
-        // filter
-        $query->when($request->input('cat'), function(Builder $query, int $id) {
-            $query->where('category_id', $id);
-        });
-        // sorting & pagination
-        $sort = 'updated_at';
-        $logs = $query->latest($sort)->paginate(10)->withQueryString();
-        return view('logs.index', compact('logs'));
-    }
 }
