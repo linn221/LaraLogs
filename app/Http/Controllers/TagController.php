@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
 use App\Models\Tag;
+use Illuminate\Http\Request;
+
 
 class TagController extends Controller
 {
@@ -18,6 +20,24 @@ class TagController extends Controller
         //
     }
 
+
+    public function showLogs(Tag $tag, Request $request)
+    {
+        $query = $tag->logs();
+        // searching
+        $query->when($request->input('q'), function(Builder $query, string $q) {
+            $query->where('title', 'like', "%$q%")
+            ->orWhere('content', 'like', "%$q%");
+        });
+        // filter
+        $query->when($request->input('cat'), function(Builder $query, int $id) {
+            $query->where('category_id', $id);
+        });
+        // sorting & pagination
+        $sort = 'updated_at';
+        $logs = $query->latest($sort)->paginate(10)->withQueryString();
+        return view('logs.index', compact('logs'));
+    }
     /**
      * Show the form for creating a new resource.
      */

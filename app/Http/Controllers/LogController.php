@@ -27,9 +27,9 @@ class LogController extends Controller
             $query->where('category_id', $id);
         });
         // sorting & pagination
-        $logs = $query->latest('updated_at')->paginate(10)->withQueryString();
+        $sort = 'updated_at';
+        $logs = $query->latest($sort)->paginate(10)->withQueryString();
         return view('logs.index', compact('logs'));
-        //
     }
 
     /**
@@ -115,7 +115,8 @@ class LogController extends Controller
             $query->where('category_id', $id);
         });
         // sorting & pagination
-        $logs = $query->latest('updated_at')->paginate(10)->withQueryString();
+        $sort = 'updated_at';
+        $logs = $query->latest($sort)->paginate(10)->withQueryString();
         return view('logs.index', compact('logs'));
     }
 }
