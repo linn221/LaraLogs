@@ -24,19 +24,19 @@ class TagController extends Controller
     public function showLogs(Request $request, Tag $tag)
     {
         $query = $tag->logs();
+        $banner = '';
+        $banner .= "Showing logs under #$tag->name";
         // searching
-        $query->when($request->input('q'), function(Builder $query, string $q) {
+        $query->when($request->input('q'), function(Builder $query, string $q) use ($banner) {
+            $banner .= " with '$q'";
             $query->where('title', 'like', "%$q%")
             ->orWhere('content', 'like', "%$q%");
-        });
-        // filter
-        $query->when($request->input('cat'), function(Builder $query, int $id) {
-            $query->where('category_id', $id);
         });
         // sorting & pagination
         $sort = 'updated_at';
         $logs = $query->latest($sort)->paginate(10)->withQueryString();
-        return view('logs.index', compact('logs'));
+        $banner .= ':';
+        return view('logs.index', compact('logs', 'banner'));
     }
     /**
      * Show the form for creating a new resource.
