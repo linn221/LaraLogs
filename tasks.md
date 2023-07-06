@@ -4,7 +4,7 @@
 * [x] validation, repopulation, error messages
 * [x] relationship, ($log->category instead of $log->category_id)
 * [x] seeding
-* [ ] add routes for CRUD actions of tags
+* [h] add routes for CRUD actions of tags
 * [ ] don't give guest users write access to resources
 * [ ] distinct admin routes and reader route
 * [ ] add route = /categories/server and /tags/php
@@ -34,6 +34,7 @@
 * [x] bootstrap-icons not working
         (add '.css' extension at import statement)
 * [!] url queries not including multiple values
+
 
 ### UI 
 * [x] show validation errors

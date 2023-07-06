@@ -30,7 +30,7 @@
                                     {{ $tag->name }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('logs.index', ['tag' => $tag->id]) }}">
+                                    <a href="{{ route('logs.tag', ['tag' => $tag->id]) }}">
                                         {{ $tag->logs()->count(); }}
                                     </a>
                                 </td>

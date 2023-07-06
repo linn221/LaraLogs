@@ -28,6 +28,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/categories', CategoryController::class);
 Route::resource('/logs', LogController::class);
 Route::resource('/tags', TagController::class);
+Route::get('/tags/{tag}', [LogController::class, 'tag'])->name('logs.tag');
 
 // testing
 Route::get('/test', CoffeeController::class)->name('test');

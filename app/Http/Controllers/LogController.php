@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLogRequest;
 use App\Http\Requests\UpdateLogRequest;
 use App\Models\Log;
+use App\Models\Tag;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -100,5 +101,21 @@ class LogController extends Controller
         return redirect()->route('logs.index')->with(['status' => 'Log removed successfully', 'status-color' => 'danger']);
         // return redirect()->route('logs.index');
         //
+    }
+
+    public function tag(Request $request, Tag $tag) {
+        $query = $tag->logs();
+        // searching
+        $query->when($request->input('q'), function(Builder $query, string $q) {
+            $query->where('title', 'like', "%$q%")
+            ->orWhere('content', 'like', "%$q%");
+        });
+        // filter
+        $query->when($request->input('cat'), function(Builder $query, int $id) {
+            $query->where('category_id', $id);
+        });
+        // sorting & pagination
+        $logs = $query->latest('updated_at')->paginate(10)->withQueryString();
+        return view('logs.index', compact('logs'));
     }
 }
