@@ -13,7 +13,19 @@ class LogSeeder extends Seeder
      */
     public function run(): void
     {
-        Log::factory()->count(200)->create();
+        $no = 45;
+        Log::factory()->count($no)->create();
+        for($i = 1; $i <= $no; $i++) {
+            $tag_ids = [$this->randTag()];
+            while (rand(1, 3) == 3) {
+                $tag_ids[] = $this->randTag();
+            }
+            Log::find($i)->tags()->attach($tag_ids);
+        }
         //
+    }
+
+    private function randTag() : int {
+        return rand(1, 10);
     }
 }

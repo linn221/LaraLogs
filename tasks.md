@@ -34,6 +34,7 @@
 * [x] bootstrap-icons not working
         (add '.css' extension at import statement)
 * [!] url queries not including multiple values
+* [!] query builder when not running in showLog actions
 
 
 ### UI 
@@ -46,6 +47,7 @@
 * [x] clicking a category will go to log listing page, filtered by that selected category
 * [x] icons instead of dumb text
 * [x] pagination links at the top, aligned right with search bar
+* [!] update hyper links
 * [ ] inform how many items are found with search
 * [ ] show the log once clicked on the title
 * [x] add edit button in show page
