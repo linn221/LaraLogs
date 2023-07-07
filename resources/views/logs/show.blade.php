@@ -18,14 +18,15 @@
                     </h4>
                     <div class="">
                         <span class=" badge bg-success me-2">
-                            <a href="{{ route('logs.index', ['cat' => $log->category_id]) }}" class=" text-decoration-none text-white">
+                            <a href="{{ route('logs.index.category', $log->category_id) }}"
+                                class=" text-decoration-none text-white">
                                 {{ $log->category->name }}
                             </a>
                         </span>
-                        @foreach ($log->tags->pluck('name')->toArray() as $tag_name)
-                        <a href="#" class=" me-1 text-decoration-none">
-                            {{ "#$tag_name" }}
-                        </a>
+                        @foreach ($log->tags as $tag)
+                        <a href="{{ route('logs.index.tag', $tag->id) }}" class=" me-1 text-decoration-none">
+                            {{ "#$tag->name" }}
+                            </a>
                         @endforeach
                     </div>
                     <div class="">

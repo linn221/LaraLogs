@@ -47,7 +47,8 @@
 * [x] clicking a category will go to log listing page, filtered by that selected category
 * [x] icons instead of dumb text
 * [x] pagination links at the top, aligned right with search bar
-* [!] update hyper links
+* [!] update hyper links (using component)
+* [!] informative action status
 * [ ] inform how many items are found with search
 * [ ] show the log once clicked on the title
 * [x] add edit button in show page

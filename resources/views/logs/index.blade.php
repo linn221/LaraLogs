@@ -59,7 +59,7 @@
                                 </td>
 
                                 <td>
-                                    <a href="{{ route('logs.index', ['cat' => $log->category_id]) }}"
+                                    <a href="{{ route('logs.index.category', $log->category_id) }}"
                                         class=" text-decoration-none text-dark ">
                                         {{ $log->category->name }}
                                     </a>
@@ -67,9 +67,9 @@
 
                                 <td>
                                     {{-- copy & paste proudly from show view --}}
-                                    @foreach ($log->tags->pluck('name')->toArray() as $tag_name)
-                                        <a href="#" class=" text-decoration-none">
-                                            {{ "#$tag_name" }}
+                                    @foreach ($log->tags as $tag)
+                                        <a href="{{ route('logs.index.tag', $tag->id) }}" class=" text-decoration-none">
+                                            {{ "#$tag->name" }}
                                         </a>
                                     @endforeach
                                 </td>
@@ -131,10 +131,6 @@
                         @endforelse
                     </tbody>
                 </table>
-                <div class="">
-                    {{-- {{ $categories->onEachSide(1)->links() }} --}}
-                </div>
-
             </div>
         </div>
     </div>
