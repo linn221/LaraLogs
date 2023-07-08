@@ -74,25 +74,10 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-
-                                        <a class=" btn btn-sm btn-outline-dark" href="{{ route('logs.show', $log->id) }}">
-                                            <i class=" bi bi-info"></i>
-                                        </a>
-                                        <a href="{{ route('logs.edit', $log->id) }}" class="btn btn-sm btn-outline-dark">
-                                            <i class=" bi bi-pencil"></i>
-                                        </a>
-
-                                        <button form="deleteForm" class=" btn btn-sm btn-outline-dark">
-                                            <i class=" bi bi-trash3"></i>
-                                        </button>
-
+                                        <x-buttons.icon :hLink="route('logs.show', $log->id)" icon="info" />
+                                        <x-buttons.icon :hLink="route('logs.edit', $log->id)" icon="pencil" />
+                                        <x-buttons.delete :action="route('logs.destroy', $log->id)" />
                                     </div>
-                                    <form id="deleteForm" class=" d-inline-block"
-                                        action="{{ route('logs.destroy', $log->id) }}" method="post">
-                                        @method('delete')
-                                        @csrf
-
-                                    </form>
                                 </td>
                                 <td>
                                     <p class=" small mb-0">
