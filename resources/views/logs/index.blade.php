@@ -6,10 +6,10 @@
                 <h3>Logs</h3>
                 <hr>
 
-
                 <div class=" mb-3">
                     <a href="{{ route('logs.create') }}" class="btn btn-outline-primary">New</a>
                 </div>
+
                 <div class=" search-form mb-3 w-25">
                     <form action="" class="">
                         <div class="input-group">
@@ -67,10 +67,9 @@
 
                                 <td>
                                     {{-- copy & paste proudly from show view --}}
+                                    {{-- no more, with using component --}}
                                     @foreach ($log->tags as $tag)
-                                        <a href="{{ route('logs.index.tag', $tag->id) }}" class=" text-decoration-none">
-                                            {{ "#$tag->name" }}
-                                        </a>
+                                        <x-tag-link :id="$tag->id" :name="$tag->name" />
                                     @endforeach
                                 </td>
                                 <td>

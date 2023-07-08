@@ -4,7 +4,7 @@
 * [x] validation, repopulation, error messages
 * [x] relationship, ($log->category instead of $log->category_id)
 * [x] seeding
-* [h] add routes for CRUD actions of tags
+* [x] add routes for CRUD actions of tags
 * [ ] don't give guest users write access to resources
 * [ ] distinct admin routes and reader route
 * [ ] add route = /categories/server and /tags/php

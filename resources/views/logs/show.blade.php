@@ -24,9 +24,7 @@
                             </a>
                         </span>
                         @foreach ($log->tags as $tag)
-                        <a href="{{ route('logs.index.tag', $tag->id) }}" class=" me-1 text-decoration-none">
-                            {{ "#$tag->name" }}
-                            </a>
+                            <x-tag-link :id="$tag->id" :name="$tag->name" />
                         @endforeach
                     </div>
                     <div class="">
