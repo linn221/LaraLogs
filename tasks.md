@@ -35,6 +35,7 @@
         (add '.css' extension at import statement)
 * [!] url queries not including multiple values
 * [!] query builder when not running in showLog actions
+* [!] logs pointing to non-existent category
 
 
 ### UI 

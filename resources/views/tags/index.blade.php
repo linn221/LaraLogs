@@ -30,9 +30,7 @@
                                     {{ $tag->name }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('logs.index.tag', ['tag' => $tag->id]) }}">
-                                        {{ $tag->logs()->count(); }}
-                                    </a>
+                                    <x-norm-link :hText="$tag->logs()->count()" :hLink="route('logs.index.tag', $tag->id)"/>
                                 </td>
                                 <td>
                                     <div class="btn-group">

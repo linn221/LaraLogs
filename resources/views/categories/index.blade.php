@@ -30,9 +30,7 @@
                                     {{ $category->name }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('logs.index.category', $category->id) }}">
-                                        {{ $category->logs()->count(); }}
-                                    </a>
+                                    <x-norm-link :hLink="route('logs.index.category', $category->id)" :hText="$category->logs()->count()" />
                                 </td>
                                 <td>
                                     <div class="btn-group">
