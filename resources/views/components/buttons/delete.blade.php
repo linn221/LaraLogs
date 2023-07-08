@@ -7,5 +7,4 @@
 <form id="deleteForm" class=" d-inline-block" action="{{ $action }}" method="post">
     @method('delete')
     @csrf
-
 </form>

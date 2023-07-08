@@ -36,18 +36,8 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('categories.edit', $category->id) }}"
-                                            class="btn btn-sm btn-outline-dark">
-                                            <i class=" bi bi-pencil"></i>
-                                        </a>
-                                        <form class=" d-inline-block"
-                                            action="{{ route('categories.destroy', $category->id) }}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-sm btn-outline-dark">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </form>
+                                        <x-buttons.icon icon="pencil" :hLink="route('categories.edit', $category->id)" />
+                                        <x-buttons.delete :action="route('categories.destroy', $category->id)" />
                                     </div>
                                 </td>
                             </tr>
