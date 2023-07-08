@@ -7,9 +7,9 @@
                 <hr>
 
                 <div class=" mb-3">
-                    <a href="{{ route('logs.edit', $log->id) }}" class="btn btn-outline-primary">Edit</a>
-                    <a href="{{ route('logs.create') }}" class="btn btn-outline-success">New</a>
-                    <a href="{{ route('logs.index') }}" class="btn btn-outline-dark">All Logs</a>
+                    <x-buttons.icon icon="pencil" :hLink="route('logs.edit', $log->id)" outline="primary" size="" />
+                    <x-buttons.icon icon="list-task" :hLink="route('logs.index')" outline="dark" size="" />
+
                 </div>
 
                 <div>

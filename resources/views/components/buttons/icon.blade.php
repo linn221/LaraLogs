@@ -1,7 +1,16 @@
 @props([
-    'hLink' => url('/'),
-    'icon' => 'info'
+    'hLink',
+    'icon',
+    'outline' => 'dark',
+    'size' => 'sm'
 ])
-<a class=" btn btn-sm btn-outline-dark" href="{{ $hLink; }}">
+@php
+    $default_attributes = [
+        'class' => " btn btn-$size btn-outline-$outline"
+    ];
+@endphp
+<a
+href="{{ $hLink; }}"
+{{ $attributes->merge($default_attributes) }}>
     <i class=" bi bi-{{ $icon; }}"></i>
 </a>

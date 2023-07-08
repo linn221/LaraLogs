@@ -43,10 +43,10 @@
                         @forelse ($logs as $log)
                             <tr>
                                 <td>
-                                    <x-norm-link :hLink="route('logs.show', $log->id)" :hText="$log->id" />
+                                    <x-norm-link :hLink="route('logs.edit', $log->id)" :hText="$log->id" />
                                 </td>
                                 <td>
-                                    <x-norm-link :hLink="route('logs.edit', $log->id)" :hText="$log->title" class="text-dark" />
+                                    <x-norm-link :hLink="route('logs.show', $log->id)" :hText="$log->title" class="text-dark" />
                                     <br>
                                     <span class=" small text-black-50">
                                         {{ Str::limit($log->content, 30, '...') }}
