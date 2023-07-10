@@ -16,4 +16,8 @@ class Log extends Model
     public function Tags() {
         return $this->belongsToMany(Tag::class);
     }
+
+    public function Images() {
+        return $this->hasMany(Image::class);
+    }
 }

@@ -8,7 +8,6 @@
 * [ ] don't give guest users write access to resources
 * [ ] distinct admin routes and reader route
 * [ ] add route = /categories/server and /tags/php
-* [?] add private attributes in controller class??
 
 ### Refactor
 * [ ] Eager loading for category of log
@@ -24,9 +23,9 @@
 * [ ] soft deleting, have a bin for admin to recycle or permentally delete
 * [ ] deleting a category will give an option to delete related logs, or put them into archived
 * [x] add tags, of course
-* [!] filter by tag
-* [!] order by column
+* [x] filter by tag
 * [!] add pictures
+* [!] order by column
 * [ ] hightlight matched strings in searching logs
 * [ ] add slug
 * [ ] add visitors
@@ -59,3 +58,6 @@
 * [ ] don't let guest users see admin tasks
 * [ ] icons at nav-bar and other relevant places
 * [ ] show status like 'logs under linux or frontend', 'showing logs by query' at index listing page
+
+### Wonder
+* [ ] add private attributes in controller class??
