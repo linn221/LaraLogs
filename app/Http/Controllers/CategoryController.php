@@ -83,18 +83,14 @@ class CategoryController extends Controller
     public function showLogs(Request $request, Category $category)
     {
         $query = $category->logs();
-        $banner = '';
-        $banner .= "Showing logs under $category->name category";
         // searching
-        $query->when($request->input('q'), function(Builder $query, string $q) use ($banner) {
-            $banner .= " with '$q'";
+        $query->when($request->input('q'), function(Builder $query, string $q) {
             $query->where('title', 'like', "%$q%")
             ->orWhere('content', 'like', "%$q%");
         });
         // sorting & pagination
         $sort = 'updated_at';
         $logs = $query->latest($sort)->paginate(10)->withQueryString();
-        $banner .= ':';
-        return view('logs.index', compact('logs', 'banner'));
+        return view('logs.index', compact('logs'));
     }
 }

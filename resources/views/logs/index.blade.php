@@ -22,7 +22,25 @@
                 </div>
                 <div>
                     {{-- like to live dangeriously for now (red) --}}
-                    <h4>{!! $banner ?? '' !!}</h4>
+                    @if (request()->is('tags/*'))
+                        <h4>
+                            Showing logs under
+                            <span class=" text-primary">
+                                #{{ request()->tag->name ?? 'bug' }}
+                            </span>
+                            : ({{ $logs->count() }})->
+                        </h4>
+                    @endif
+
+                    @if (request()->is('categories/*'))
+                        <h4>
+                            Showing logs in
+                            <span class=" text-success">
+                                {{ request()->category->name ?? 'bug' }}
+                            </span>
+                            : ({{ $logs->count() }})->
+                        </h4>
+                    @endif
                 </div>
                 <div class="">
                     {{ $logs->onEachSide(1)->links() }}

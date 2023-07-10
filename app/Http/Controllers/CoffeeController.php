@@ -14,11 +14,12 @@ class CoffeeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $apple = 'shit';
-        $q = Log::query()
-        ->when($request->has('shit'), function(Builder $query, string $apple) {
-            dd($apple);
-        });
+        dd($request);
+        // $apple = 'shit';
+        // $q = Log::query()
+        // ->when($request->has('shit'), function(Builder $query, string $apple) {
+        //     dd($apple);
+        // });
         // ->where('title', 'like', "%$q%")
         // ->orWhere('content', 'like', "%$q%")
         // ->get();
