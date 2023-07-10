@@ -21,7 +21,8 @@
                     </form>
                 </div>
                 <div>
-                    <h4>{{ $banner ?? '' }}</h4>
+                    {{-- like to live dangeriously for now (red) --}}
+                    <h4>{!! $banner ?? '' !!}</h4>
                 </div>
                 <div class="">
                     {{ $logs->onEachSide(1)->links() }}

@@ -27,15 +27,20 @@ class TagController extends Controller
         $banner = '';
         $banner .= "Showing logs under #$tag->name";
         // searching
-        $query->when($request->input('q'), function(Builder $query, string $q) use ($banner) {
-            $banner .= " with '$q'";
-            $query->where('title', 'like', "%$q%")
-            ->orWhere('content', 'like', "%$q%");
+        $query->where(function ($query) use($banner, $request) {
+            // Logical grouping, VERY critical
+
+            $query->when($request->input('q'), function($query, string $q) use ($banner) {
+                $banner .= " with '$q'";
+                $query->where('title', 'like', "%$q%")
+                ->orWhere('content', 'like', "%$q%");
+            });
         });
+        // dd($query->dd());
         // sorting & pagination
         $sort = 'updated_at';
         $logs = $query->latest($sort)->paginate(10)->withQueryString();
-        $banner .= ':';
+        $banner .= "(<strong>". $logs->count() . "</strong>)->";
         return view('logs.index', compact('logs', 'banner'));
     }
     /**

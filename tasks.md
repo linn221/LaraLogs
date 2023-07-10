@@ -34,7 +34,8 @@
 * [x] bootstrap-icons not working
         (add '.css' extension at import statement)
 * [!] url queries not including multiple values
-* [!] query builder when not running in showLog actions
+* [x] query builder when not running in showLog actions
+        (fixed by logical grouping, add paratentises in `where $con (where $con2 or where $con3)`)
 * [!] logs pointing to non-existent category
 
 
