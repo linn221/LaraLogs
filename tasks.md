@@ -24,7 +24,9 @@
 * [ ] deleting a category will give an option to delete related logs, or put them into archived
 * [x] add tags, of course
 * [x] filter by tag
-* [!] add pictures
+* [x] add iamges
+* [ ] add remove image button
+* [!] edit iamges
 * [!] order by column
 * [ ] hightlight matched strings in searching logs
 * [ ] add slug

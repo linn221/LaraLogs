@@ -27,6 +27,6 @@ class UploadImage extends Controller
                 return abort(404);
             }
         }
-        return redirect()->route('logs.index');
+        return redirect()->back();
     }
 }

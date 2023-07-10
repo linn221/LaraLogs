@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLogRequest;
 use App\Http\Requests\UpdateLogRequest;
+use App\Models\Image;
 use App\Models\Log;
 use App\Models\Tag;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -52,6 +53,13 @@ class LogController extends Controller
         // tags
         if ($request->has('tags')) {
             $log->tags()->attach($request->input('tags'));
+        }
+        // images
+        if ($temp_images = Log::find(1)->images) {
+            foreach($temp_images as $image) {
+                $image->log_id = $log->id;
+                $image->save();
+            }
         }
         return redirect()->route('logs.index')->with(['status' => 'Log created successfully']);
         //
