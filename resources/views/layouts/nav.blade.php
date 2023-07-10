@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md bg-secondary-subtle">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
@@ -12,12 +12,19 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
                 {{-- testing link --}}
-                <li class="nav-item">
-                    <a href="{{ route('test') }}" class="nav-link">
-                        test
-                    </a>
-                </li>
+                @auth
+                    <li class="nav-item">
+                        <a href="{{ route('test') }}" class="nav-link">
+                            test
+                        </a>
+                    </li>
 
+                    <li class="nav-item">
+                        <a href="{{ route('logs.create') }}" class="nav-link">
+                            <i class=" bi bi-pencil-square"></i>
+                        </a>
+                    </li>
+                @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->

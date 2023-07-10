@@ -58,6 +58,7 @@
 * [ ] don't let guest users see admin tasks
 * [ ] icons at nav-bar and other relevant places
 * [ ] show status like 'logs under linux or frontend', 'showing logs by query' at index listing page
+* [!] ugly pagination UI
 
 ### Wonder
 * [ ] add private attributes in controller class??

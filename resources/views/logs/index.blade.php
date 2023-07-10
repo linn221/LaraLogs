@@ -3,24 +3,8 @@
     <div class=" container">
         <div class="row">
             <div class="col-12">
-                <h3>Logs</h3>
-                <hr>
-
-                <div class=" mb-3">
-                    <a href="{{ route('logs.create') }}" class="btn btn-outline-primary">New</a>
-                </div>
-
-                <div class=" search-form mb-3 w-25">
-                    <form action="" class="">
-                        <div class="input-group">
-                            <input type="text" class=" form-control" name="q" value="{{ request()->q }}">
-                            <button class=" btn btn-dark">
-                                <i class=" bi bi-search"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div>
+                <x-search-bar />
+                <div class=" mt-5">
                     {{-- i know, DRY, component? --}}
                     @if (request()->is('tags/*'))
                         <h3>
@@ -29,7 +13,7 @@
                                 #{{ request()->tag->name ?? 'bug' }}
                             </span>
                             @if ($logs->count() < 9)
-                            :{{ $logs->count() }}->
+                                :{{ $logs->count() }}->
                             @endif
                         </h3>
                     @endif
@@ -41,7 +25,7 @@
                                 {{ request()->category->name ?? 'bug' }}
                             </span>
                             @if ($logs->count() < 9)
-                            : ({{ $logs->count() }})->
+                                : ({{ $logs->count() }})->
                             @endif
                         </h3>
                     @endif
@@ -50,7 +34,7 @@
                     {{ $logs->onEachSide(1)->links() }}
                 </div>
 
-                <table class=" table">
+                <table class=" table table-warning">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -66,7 +50,7 @@
                         @forelse ($logs as $log)
                             <tr>
                                 <td>
-                                    <x-norm-link :hLink="route('logs.edit', $log->id)" :hText="$log->id" />
+                                    <x-norm-link :hLink="route('logs.edit', $log->id)" :hText="$log->id" class=" text-success" />
                                 </td>
                                 <td>
                                     <x-norm-link :hLink="route('logs.show', $log->id)" :hText="$log->title" class="text-dark" />
