@@ -27,6 +27,7 @@
 * [!] filter by tag
 * [!] order by column
 * [!] add pictures
+* [ ] hightlight matched strings in searching logs
 * [ ] add slug
 * [ ] add visitors
 * [ ] previous, next button on show page

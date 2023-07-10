@@ -21,25 +21,29 @@
                     </form>
                 </div>
                 <div>
-                    {{-- like to live dangeriously for now (red) --}}
+                    {{-- i know, DRY, component? --}}
                     @if (request()->is('tags/*'))
-                        <h4>
+                        <h3>
                             Showing logs under
                             <span class=" text-primary">
                                 #{{ request()->tag->name ?? 'bug' }}
                             </span>
-                            : ({{ $logs->count() }})->
-                        </h4>
+                            @if ($logs->count() < 9)
+                            :{{ $logs->count() }}->
+                            @endif
+                        </h3>
                     @endif
 
                     @if (request()->is('categories/*'))
-                        <h4>
+                        <h3>
                             Showing logs in
                             <span class=" text-success">
                                 {{ request()->category->name ?? 'bug' }}
                             </span>
+                            @if ($logs->count() < 9)
                             : ({{ $logs->count() }})->
-                        </h4>
+                            @endif
+                        </h3>
                     @endif
                 </div>
                 <div class="">

@@ -84,9 +84,11 @@ class CategoryController extends Controller
     {
         $query = $category->logs();
         // searching
-        $query->when($request->input('q'), function(Builder $query, string $q) {
-            $query->where('title', 'like', "%$q%")
-            ->orWhere('content', 'like', "%$q%");
+        $query->where(function ($query) use ($request) {
+            $query->when($request->input('q'), function($query, string $q) {
+                $query->where('title', 'like', "%$q%")
+                ->orWhere('content', 'like', "%$q%");
+            });
         });
         // sorting & pagination
         $sort = 'updated_at';
