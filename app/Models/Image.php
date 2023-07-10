@@ -9,6 +9,8 @@ class Image extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['log_id', 'original_name', 'uri'];
+
     public function Log() {
         return $this->belongsTo(Log::class);
     }

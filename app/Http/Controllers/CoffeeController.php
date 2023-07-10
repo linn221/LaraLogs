@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Log;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Http\Request;
@@ -14,7 +15,8 @@ class CoffeeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('image');
+        $images = Image::all();
+        return view('image', compact('images'));
         // dd($request);
         // $apple = 'shit';
         // $q = Log::query()

@@ -33,6 +33,9 @@
                 </div>
 
             </div>
+            @foreach ($log->images as $image)
+                <img src="{{ asset(Storage::url($image->uri)) }}" alt="" width="200">
+            @endforeach
         </div>
     </div>
 @endsection

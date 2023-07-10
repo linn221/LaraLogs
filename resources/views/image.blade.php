@@ -8,7 +8,7 @@
 
 <form action="{{ route('upload-image') }}" method="post" enctype="multipart/form-data">
     @csrf
-    @foreach (App\Models\Log::paginate(10)->pluck('id') as $log_id)
+    @foreach (App\Models\Log::latest()->paginate(10)->pluck('id') as $log_id)
         <input type="radio" name="log-id" value="{{ $log_id }}" id="{{ "rb-$log_id" }}">
         <label for="{{ "rb-$log_id" }}">
             {{ $log_id }}
