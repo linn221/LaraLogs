@@ -22,7 +22,7 @@ class StoreImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'log_id' => "required:exists:logs,id",
+            'log-id' => "required:exists:logs,id",
             'images' => "required|array",
             'images.*' => "required|file"
             //

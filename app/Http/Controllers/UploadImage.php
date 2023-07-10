@@ -12,5 +12,6 @@ class UploadImage extends Controller
      */
     public function __invoke(StoreImageRequest $request)
     {
+        return $request;
     }
 }

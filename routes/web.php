@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CoffeeController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\UploadImage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,8 @@ Route::get('/tags/{tag}', [TagController::class, 'showLogs'])->name('logs.index.
 Route::get('/categories/{category}', [CategoryController::class, 'showLogs'])->name('logs.index.category');
 // testing
 Route::get('/test', CoffeeController::class)->name('test');
+
+Route::post('/upload-image', UploadImage::class)->name('upload-image');
 
 // Route::view('create-cat', "categories.create")->name('categories.create');
 // Route::view('edit-cat', "categories.edit")->name('categories.edit');

@@ -14,7 +14,8 @@ class CoffeeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        dd($request);
+        return view('image');
+        // dd($request);
         // $apple = 'shit';
         // $q = Log::query()
         // ->when($request->has('shit'), function(Builder $query, string $apple) {
