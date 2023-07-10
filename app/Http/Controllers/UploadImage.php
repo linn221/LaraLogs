@@ -23,6 +23,8 @@ class UploadImage extends Controller
                     'uri' => $file_uri,
                     'original_name' => $file->getClientOriginalName()
                 ]);
+            } else {
+                return abort(404);
             }
         }
         return redirect()->route('logs.index');

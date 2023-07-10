@@ -1,5 +1,5 @@
 @extends('layouts.app')
-{{-- {{ $errors }} --}}
+{{ $errors }}
 @section('content')
     <div class=" container-sm">
         <div class="row">
@@ -7,6 +7,11 @@
             <hr>
             <form action="{{ route('logs.store') }}" id="createLogForm" method="post">
                 @csrf
+            </form>
+
+            <form action="{{ route('upload-image') }}" id="imageForm" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="log-id" value="1">
             </form>
 
             <div class="mb-3">
@@ -55,6 +60,13 @@
                 @endforeach
             </div>
 
+            {{-- showing uploaded images --}}
+            @foreach (App\Models\Log::find(1)->images as $image)
+                <img src="{{ asset(Storage::url($image->uri)) }}" alt="" class="w-25">
+            @endforeach
+            {{-- <button>trash</button> --}}
+            <input form="imageForm" type="file" name="images[]" class=" form-control form-control-file mb-3" multiple
+                onchange="document.querySelector('#imageForm').submit()">
         </div>
         <div class="mb-3">
             <button form="createLogForm" class=" w-100 d-block btn btn-primary">Save Log</button>

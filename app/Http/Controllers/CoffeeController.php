@@ -15,6 +15,8 @@ class CoffeeController extends Controller
      */
     public function __invoke(Request $request)
     {
+        // $log = Log::find(1);
+        // dd($log);
         $images = Image::all();
         return view('image', compact('images'));
         // dd($request);

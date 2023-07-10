@@ -24,7 +24,7 @@ class StoreImageRequest extends FormRequest
         return [
             'log-id' => "required:exists:logs,id",
             'images' => "required|array",
-            'images.*' => "required|file"
+            'images.*' => "required"
             //
         ];
     }
