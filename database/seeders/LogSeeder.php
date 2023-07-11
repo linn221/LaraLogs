@@ -13,7 +13,7 @@ class LogSeeder extends Seeder
      */
     public function run(): void
     {
-        $no = 45;
+        $no = 100;
         Log::create([
             'title' => '404',
             'content' => 'a',
@@ -25,7 +25,7 @@ class LogSeeder extends Seeder
             while (rand(1, 3) == 3) {
                 $tag_ids[] = $this->randTag();
             }
-            Log::find($i)->tags()->attach($tag_ids);
+            Log::find($i)->tags()->attach(array_unique($tag_ids));
         }
         //
     }

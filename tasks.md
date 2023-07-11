@@ -5,7 +5,16 @@
 * [x] relationship, ($log->category instead of $log->category_id)
 * [x] seeding
 * [x] add routes for CRUD actions of tags
-* [ ] don't give guest users write access to resources
+* [x] add tags, of course
+* [x] filter by tag
+* [x] add iamges
+* [x] pagination
+* [x] filter by category
+* [x] search
+* [!] edit iamges
+* [ ] order by column
+* [!] don't give guest users write access to resources
+* [@] access control, middleware, authorization, etc
 * [ ] distinct admin routes and reader route
 * [ ] add route = /categories/server and /tags/php
 
@@ -13,21 +22,14 @@
 * [ ] Eager loading for category of log
 
 ### Features
-* [x] pagination
-* [x] filter by category
-* [x] search
 * [x] add status
 * [ ] fileter by updated, created date
 * [ ] sort by id, updated, created, title
 * [ ] sort by id, updated, created, title (for category)
 * [ ] soft deleting, have a bin for admin to recycle or permentally delete
 * [ ] deleting a category will give an option to delete related logs, or put them into archived
-* [x] add tags, of course
-* [x] filter by tag
-* [x] add iamges
 * [ ] add remove image button
-* [!] edit iamges
-* [!] order by column
+* [ ] return to index page after editing a log, tags/$id, or categories/$id, needs a way to store that info elegantly
 * [ ] hightlight matched strings in searching logs
 * [ ] add slug
 * [ ] add visitors
@@ -36,11 +38,16 @@
 ### Bugs
 * [x] bootstrap-icons not working
         (add '.css' extension at import statement)
-* [!] url queries not including multiple values
+* [x] url queries not including multiple values
 * [x] query builder when not running in showLog actions
         (fixed by logical grouping, add paratentises in `where $con (where $con2 or where $con3)`)
-* [!] logs pointing to non-existent category
+* [x] logs pointing to non-existent category
+* [x] 2 identical records showing at tags/5
+        (cuased by a log having the same tag multiple times, seeder code, and needs to validate or something as well)
 
+### Fix
+* [ ] a log having duplicate tags, validation or something
+* [ ] strained foreign key relationship, on casacade
 
 ### UI 
 * [x] show validation errors
@@ -52,15 +59,15 @@
 * [x] clicking a category will go to log listing page, filtered by that selected category
 * [x] icons instead of dumb text
 * [x] pagination links at the top, aligned right with search bar
+* [x] add edit button in show page
 * [!] update hyper links (using component)
-* [!] informative action status
+* [@] informative action status
 * [ ] inform how many items are found with search
 * [ ] show the log once clicked on the title
-* [x] add edit button in show page
 * [ ] don't let guest users see admin tasks
 * [ ] icons at nav-bar and other relevant places
 * [ ] show status like 'logs under linux or frontend', 'showing logs by query' at index listing page
-* [!] ugly pagination UI
+* [ ] ugly pagination UI
 
 ### Wonder
 * [ ] add private attributes in controller class??
