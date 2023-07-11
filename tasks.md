@@ -11,6 +11,7 @@
 * [x] pagination
 * [x] filter by category
 * [x] search
+* [!] delete image files on database delete
 * [!] edit iamges
 * [ ] order by column
 * [!] don't give guest users write access to resources
@@ -44,6 +45,8 @@
 * [x] logs pointing to non-existent category
 * [x] 2 identical records showing at tags/5
         (cuased by a log having the same tag multiple times, seeder code, and needs to validate or something as well)
+* [x] deleting the first item no matter which delete button is clicked
+        (delete forms having the same id for different items)
 
 ### Fix
 * [ ] a log having duplicate tags, validation or something

@@ -76,7 +76,7 @@
                                     <div class="btn-group">
                                         <x-buttons.icon :hLink="route('logs.show', $log->id)" icon="info" />
                                         <x-buttons.icon :hLink="route('logs.edit', $log->id)" icon="pencil" />
-                                        <x-buttons.delete :action="route('logs.destroy', $log->id)" />
+                                        <x-buttons.delete :action="route('logs.destroy', $log->id)" :id="$log->id" />
                                     </div>
                                 </td>
                                 <td>

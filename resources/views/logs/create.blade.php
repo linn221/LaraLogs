@@ -17,7 +17,10 @@
 
             {{-- showing uploaded images --}}
             @foreach (App\Models\Log::find(1)->images as $image)
-            <x-image.edit :uri="$image->uri" />
+            <x-image.edit :image="$image" />
+            <x-buttons.delete :action="route('delete-image', $image->id)" :id="$image->id"/>
+            <br>
+                {{-- <x-image.edit :image="$image" /> --}}
             @endforeach
             {{-- <button>trash</button> --}}
             <input form="imageForm" type="file" name="images[]" class=" form-control form-control-file mb-3" multiple
