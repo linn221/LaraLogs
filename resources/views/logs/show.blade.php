@@ -3,8 +3,6 @@
     <div class=" container">
         <div class="row">
             <div class="col-12">
-                <h3>Log Detail</h3>
-                <hr>
 
                 <div class=" mb-3">
                     <x-buttons.icon icon="pencil" :hLink="route('logs.edit', $log->id)" outline="primary" size="" />
@@ -16,6 +14,7 @@
                     <h4>
                         {{ $log->title }}
                     </h4>
+                <hr>
                     <div class="">
                         <span class=" badge bg-success me-2">
                             <a href="{{ route('logs.index.category', $log->category_id) }}"
@@ -27,15 +26,23 @@
                             <x-tag-link :id="$tag->id" :name="$tag->name" />
                         @endforeach
                     </div>
-                    <div class="">
+                    <div class=" mt-4">
                         {{ $log->content }}
                     </div>
                 </div>
 
             </div>
-            @foreach ($log->images as $image)
-                <img src="{{ asset(Storage::url($image->uri)) }}" alt="" width="200">
-            @endforeach
+            <hr>
+            @if (!empty($log->images->toArray()))
+                <div class=" mt-2">
+                    <h3 class=" mb-3">Images:</h3>
+                    @foreach ($log->images as $image)
+                        <x-image.show :uri="$image->uri" />
+                        {{-- <img src="{{ asset(Storage::url($image->uri)) }}" alt="" width="200"> --}}
+                    @endforeach
+
+                </div>
+            @endif
         </div>
     </div>
 @endsection

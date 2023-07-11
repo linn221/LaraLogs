@@ -17,7 +17,7 @@
 
             {{-- showing uploaded images --}}
             @foreach (App\Models\Log::find(1)->images as $image)
-                <img src="{{ asset(Storage::url($image->uri)) }}" alt="" class="w-25">
+            <x-image.edit :uri="$image->uri" />
             @endforeach
             {{-- <button>trash</button> --}}
             <input form="imageForm" type="file" name="images[]" class=" form-control form-control-file mb-3" multiple

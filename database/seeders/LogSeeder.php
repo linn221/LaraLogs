@@ -13,10 +13,10 @@ class LogSeeder extends Seeder
      */
     public function run(): void
     {
-        $no = 100;
+        $no = 20;
         Log::create([
-            'title' => '404',
-            'content' => 'a',
+            'title' => 'example',
+            'content' => "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum, aliquam. Nostrum ratione enim iste veniam, corporis sit excepturi tenetur, nesciunt perferendis earum quod placeat dolorem porro reprehenderit quam? Eius, facilis?",
             'category_id' => 1
         ]);
         Log::factory()->count($no-1)->create();
