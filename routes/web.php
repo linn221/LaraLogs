@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CoffeeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UploadImage;
 use Illuminate\Support\Facades\Route;
@@ -19,26 +21,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('dummy');
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// admin
+Route::middleware('auth')->prefix('dashboard')->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('/categories', CategoryController::class);
+    Route::resource('/logs', LogController::class);
+    Route::resource('/tags', TagController::class);
+    Route::get('/tags/{tag}', [TagController::class, 'showLogs'])->name('logs.index.tag');
+    Route::get('/categories/{category}', [CategoryController::class, 'showLogs'])->name('logs.index.category');
+    Route::post('/upload-image', UploadImage::class)->name('upload-image');
+    Route::patch('/images/{image}', [ImageController::class, 'update'])->name('caption-image');
+    Route::delete('/images/{image}', [ImageController::class, 'destroy'])->name('delete-image');
+});
 
-Route::resource('/categories', CategoryController::class);
-Route::resource('/logs', LogController::class);
-Route::resource('/tags', TagController::class);
-Route::get('/tags/{tag}', [TagController::class, 'showLogs'])->name('logs.index.tag');
-Route::get('/categories/{category}', [CategoryController::class, 'showLogs'])->name('logs.index.category');
+// index 
+Route::middleware('auth')->get('/', [LogController::class, 'index']);
+
+// public, guest users
+Route::controller(PageController::class)->group(function() {
+    Route::get('/', 'index')->name('page.index');
+    Route::get('/tag/{tag}', 'tag')->name('page.tag');
+    Route::get('/category/{category}', 'category')->name('page.category');
+    Route::get('/log/{log}', 'log')->name('page.log');
+});
+
+
 // testing
 Route::get('/test', CoffeeController::class)->name('test');
-
-Route::post('/upload-image', UploadImage::class)->name('upload-image');
-Route::patch('/images/{image}', [ImageController::class, 'update'])->name('caption-image');
-Route::delete('/images/{image}', [ImageController::class, 'destroy'])->name('delete-image');
-
 // Route::view('create-cat', "categories.create")->name('categories.create');
 // Route::view('edit-cat', "categories.edit")->name('categories.edit');
 // Route::view('cat', "categories.index")->name('categories.index');

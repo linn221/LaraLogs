@@ -74,3 +74,4 @@
 
 ### Wonder
 * [ ] add private attributes in controller class??
+* [@] fonts.bunny.net, makes my browser diffcult to load, for some reason
