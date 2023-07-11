@@ -35,7 +35,7 @@
                                 <td>
                                     <div class="btn-group">
                                         <x-buttons.icon icon="pencil" :hLink="route('tags.edit', $tag->id)" />
-                                        <x-buttons.delete :action="route('tags.destroy', $tag->id)" />
+                                        <x-buttons.delete :action="route('tags.destroy', $tag->id)" :id="$tag->id"/>
                                     </div>
                                 </td>
                             </tr>
