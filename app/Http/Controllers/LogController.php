@@ -61,7 +61,7 @@ class LogController extends Controller
                 $image->save();
             }
         }
-        return redirect()->route('logs.index')->with(['status' => 'Log created successfully']);
+        return redirect()->route('logs.index')->with(['status' => 'Log created successfully'. $log->id]);
         //
     }
 
@@ -94,7 +94,7 @@ class LogController extends Controller
         $log->save();
         $log->tags()->sync($request->input('tags'));
         // return redirect()->route('logs.index');
-        return redirect()->route('logs.index')->with(['status' => 'Log updated successfully', 'status-color' => 'warning']);
+        return redirect()->route('logs.index')->with(['status' => 'Log updated successfully#' . $log->id, 'status-color' => 'warning']);
         //
     }
 
@@ -103,8 +103,9 @@ class LogController extends Controller
      */
     public function destroy(Log $log)
     {
+        $id = $log->id;
         $log->delete();
-        return redirect()->route('logs.index')->with(['status' => 'Log removed successfully', 'status-color' => 'danger']);
+        return redirect()->route('logs.index')->with(['status' => 'Log removed successfully#' . $id, 'status-color' => 'danger']);
         // return redirect()->route('logs.index');
         //
     }
