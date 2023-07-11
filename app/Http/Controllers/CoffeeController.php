@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\Log;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CoffeeController extends Controller
 {
@@ -15,8 +16,11 @@ class CoffeeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $arr = ['coffee', 'tea', 'coffee'];
-        return array_unique($arr);
+        $image = Image::first();
+        $img = asset(Storage::url($image->uri));
+        return view('beer', compact('img'));
+        // $arr = ['coffee', 'tea', 'coffee'];
+        // return array_unique($arr);
         // $log = Log::find(1);
         // dd($log);
         // $images = Image::all();
