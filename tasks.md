@@ -51,6 +51,7 @@
 ### Fix
 * [ ] a log having duplicate tags, validation or something
 * [ ] strained foreign key relationship, on casacade
+* [@] admin index, banner not showing because of updated url
 
 ### UI 
 * [x] show validation errors

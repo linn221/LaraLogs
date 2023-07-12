@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Log;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -9,7 +10,8 @@ class PageController extends Controller
     //
     public function index()
     {
-        return "You are at /index";
+        $query = Log::paginate(10);
+        return view('guest.index', compact('logs'));
 
     }
     public function tag($tag)
