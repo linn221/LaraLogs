@@ -2,28 +2,68 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Tag;
 use App\Models\Log;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $query = Log::paginate(10);
+        $query = Log::query();
+        // searching
+        $query->when($request->input('q'), function(Builder $query, string $q) {
+            $query->where('title', 'like', "%$q%")
+            ->orWhere('content', 'like', "%$q%");
+        });
+        // sorting & pagination
+        $sort = 'updated_at';
+        $logs = $query->latest($sort)->paginate(10)->withQueryString();
         return view('guest.index', compact('logs'));
 
     }
-    public function tag($tag)
+    public function tag(Request $request, Tag $tag)
     {
-        return "You are at /tag";
+        // copy & paste from controller code
+        $query = $tag->logs();
+        // searching
+        $query->where(function ($query) use ($request) {
+            // Logical grouping, VERY critical
 
+            $query->when($request->input('q'), function ($query, string $q) {
+                $query->where('title', 'like', "%$q%")
+                    ->orWhere('content', 'like', "%$q%");
+            });
+        });
+        // dd($query->dd());
+        // sorting & pagination
+        $sort = 'updated_at';
+        $logs = $query->latest($sort)->paginate(10)->withQueryString();
+        return view('guest.index', compact('logs'));
     }
-    public function category()
+
+    public function category(Request $request, Category $category)
     {
-        return "You are at /index";
+        // copy & paste from controller code
+        $query = $category->logs();
+        // searching
+        $query->where(function ($query) use ($request) {
+            // Logical grouping, VERY critical
 
+            $query->when($request->input('q'), function ($query, string $q) {
+                $query->where('title', 'like', "%$q%")
+                    ->orWhere('content', 'like', "%$q%");
+            });
+        });
+        // dd($query->dd());
+        // sorting & pagination
+        $sort = 'updated_at';
+        $logs = $query->latest($sort)->paginate(10)->withQueryString();
+        return view('guest.index', compact('logs'));
     }
+
     public function log()
     {
         return "You are at /index";
