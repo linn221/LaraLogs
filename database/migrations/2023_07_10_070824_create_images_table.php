@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('uri');
             $table->foreignId('log_id');
-            $table->string('caption');
+            $table->string('caption')->nullable();
             $table->timestamps();
         });
     }

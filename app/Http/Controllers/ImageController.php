@@ -15,6 +15,18 @@ class ImageController extends Controller
      */
     public function store(StoreImageRequest $request)
     {
+        $files = $request->file('images');
+        // file storage
+        foreach ($files as $file) {
+            if ($file->isValid()) {
+                $file_uri = $file->store('public/images');
+                $image = Image::create([
+                    'log_id' => $request->input('log-id'),
+                    'uri' => $file_uri,
+                ]);
+            }
+        }
+        return redirect()->back();
         //
     }
 

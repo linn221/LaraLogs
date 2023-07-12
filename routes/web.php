@@ -31,7 +31,7 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::resource('/tags', TagController::class);
     Route::get('/tags/{tag}', [TagController::class, 'showLogs'])->name('logs.index.tag');
     Route::get('/categories/{category}', [CategoryController::class, 'showLogs'])->name('logs.index.category');
-    Route::post('/upload-image', UploadImage::class)->name('upload-image');
+    Route::post('/upload-image', [ImageController::class, 'store'])->name('upload-image');
     Route::patch('/images/{image}', [ImageController::class, 'update'])->name('caption-image');
     Route::delete('/images/{image}', [ImageController::class, 'destroy'])->name('delete-image');
 });
