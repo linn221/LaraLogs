@@ -35,7 +35,7 @@
                 <div class=" mt-2">
                     <h3 class=" mb-3">Images:</h3>
                     @foreach ($log->images as $image)
-                        <x-image.show :uri="$image->uri" />
+                        <x-image.show :image="$image" />
                         {{-- <img src="{{ asset(Storage::url($image->uri)) }}" alt="" width="200"> --}}
                     @endforeach
 

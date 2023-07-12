@@ -1,4 +1,6 @@
 ### Functions
+* [!] move UploadImage code to ImageController
+* [!] delete image file on delete
 * [x] migration table category, logs
 * [x] CRUD category, CRUD logs
 * [x] validation, repopulation, error messages
@@ -13,10 +15,10 @@
 * [x] search
 * [x] distinct admin routes and reader route
 * [@] create components for each log, detail log
-* [!] delete image files on database delete
-* [!] edit iamges
+* [@] delete image files on database delete
+* [@] edit iamges
 * [ ] order by column
-* [!] don't give guest users write access to resources
+* [@] don't give guest users write access to resources
 * [@] access control, middleware, authorization, etc
 
 ### Refactor
@@ -64,7 +66,7 @@
 * [x] icons instead of dumb text
 * [x] pagination links at the top, aligned right with search bar
 * [x] add edit button in show page
-* [!] update hyper links (using component)
+* [x] update hyper links (using component)
 * [@] informative action status
 * [ ] inform how many items are found with search
 * [ ] show the log once clicked on the title

@@ -21,7 +21,7 @@ class UploadImage extends Controller
                 $image = Image::create([
                     'log_id' => $request->input('log-id'),
                     'uri' => $file_uri,
-                    'original_name' => $file->getClientOriginalName()
+                    'caption' => $file->getClientOriginalName()
                 ]);
             } else {
                 return abort(404);

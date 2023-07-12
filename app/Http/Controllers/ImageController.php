@@ -31,7 +31,9 @@ class ImageController extends Controller
      */
     public function update(Request $request, Image $image)
     {
-        return $request;
+        $image->caption = $request->input('caption');
+        $image->save();
+        return redirect()->back();
         //
     }
 

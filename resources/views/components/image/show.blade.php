@@ -1,10 +1,9 @@
 @props([
-    'uri',
-    'caption' => 'photo.jpg'
+    'image'
 ])
-<img src="{{ asset(Storage::url($uri)) }}" alt="Image deleted" class=" w-25">
-@if ($caption)
+<img src="{{ asset(Storage::url($image->uri)) }}" alt="Image deleted" class=" w-25">
+@if ($image->caption)
     <p class="lead">
-        {{ $caption }}
+        {{ $image->caption }}
     </p>
 @endif
