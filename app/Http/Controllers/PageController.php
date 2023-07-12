@@ -14,7 +14,7 @@ class PageController extends Controller
     {
         $query = Log::query();
         // searching
-        $query->when($request->input('q'), function(Builder $query, string $q) {
+        $query->when($request->input('q'), function($query, string $q) {
             $query->where('title', 'like', "%$q%")
             ->orWhere('content', 'like', "%$q%");
         });

@@ -11,13 +11,13 @@
 * [x] pagination
 * [x] filter by category
 * [x] search
+* [x] distinct admin routes and reader route
+* [@] create components for each log, detail log
 * [!] delete image files on database delete
 * [!] edit iamges
 * [ ] order by column
 * [!] don't give guest users write access to resources
 * [@] access control, middleware, authorization, etc
-* [ ] distinct admin routes and reader route
-* [ ] add route = /categories/server and /tags/php
 
 ### Refactor
 * [ ] Eager loading for category of log
