@@ -18,17 +18,15 @@ class LogController extends Controller
     public function index(Request $request)
     {
         $query = Log::query();
-        $banner = '';
         // searching
-        $query->when($request->input('q'), function(Builder $query, string $q) use ($banner) {
-            $banner .= "Showing results by $q";
+        $query->when($request->input('q'), function(Builder $query, string $q) {
             $query->where('title', 'like', "%$q%")
             ->orWhere('content', 'like', "%$q%");
         });
         // sorting & pagination
         $sort = 'updated_at';
         $logs = $query->latest($sort)->paginate(10)->withQueryString();
-        return view('logs.index', compact('logs', 'banner'));
+        return view('logs.index', compact('logs'));
     }
 
     /**
