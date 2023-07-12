@@ -63,8 +63,7 @@
                                     {{-- no more, with using component --}}
                                     {{-- {{ dd($log->tags) }} --}}
                                     @foreach ($log->tags as $tag)
-                                    {{-- yellow, make me a tag-link component! --}}
-                                        <x-norm-link :hLink="route('page.tag', $tag->id)" :hText="'#'.$tag->name"/>
+                                        <x-tag-link :hLink="route('page.tag', $tag->id)" :hText="$tag->name" />
                                     @endforeach
                                 </td>
                                 <td>

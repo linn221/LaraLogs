@@ -1,6 +1,7 @@
 @props([
-    'id', 'name'
+    'hLink',
+    'hText'
 ])
-<a href="{{ route('logs.index.tag', $id) }}" class=" text-decoration-none">
-    {{ "#$name" }}
+<a href="{{ $hLink }}" class=" text-decoration-none">
+    {{ "#$hText" }}
 </a>

@@ -64,9 +64,8 @@ class PageController extends Controller
         return view('guest.index', compact('logs'));
     }
 
-    public function log()
+    public function log(Request $request, Log $log)
     {
-        return "You are at /index";
-
+        return view('guest.log', compact('log'));
     }
 }
