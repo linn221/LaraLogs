@@ -2,7 +2,9 @@
 
 namespace App\Observers;
 
+use App\Mail\NewPostMail;
 use App\Models\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class LogObserver
@@ -12,6 +14,10 @@ class LogObserver
      */
     public function created(Log $log): void
     {
+        $subscribers = ['fingerman8910@gmail.com', 'khantzinlinn221@gmail.com'];
+        foreach($subscribers as $subscriber) {
+            Mail::to($subscriber)->send(new NewPostMail($log));
+        }
         //
     }
 
@@ -20,6 +26,11 @@ class LogObserver
      */
     public function updated(Log $log): void
     {
+        $followers = ['fingerman8910@gmail.com', 'khantzinlinn221@gmail.com'];
+        foreach($followers as $follower) {
+            Mail::to($follower)->send(new NewPostMail($log));
+        }
+        // follwers
         //
     }
 
@@ -28,6 +39,11 @@ class LogObserver
      */
     public function deleted(Log $log): void
     {
+        $followers = ['fingerman8910@gmail.com', 'khantzinlinn221@gmail.com'];
+        // foreach($followers as $follower) {
+        //     Mail::to($follower)->send(new NewPostMail($log));
+        // }
+        // follwers
         foreach($log->images as $image) {
             Storage::delete($image);
         }
