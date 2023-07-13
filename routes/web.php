@@ -37,7 +37,7 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
 });
 
 // index 
-Route::middleware('auth')->get('/', [LogController::class, 'index']);
+// Route::middleware('auth')->get('/', [LogController::class, 'index'])->name('home');
 
 // public, guest users
 Route::controller(PageController::class)->group(function() {

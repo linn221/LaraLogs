@@ -6,6 +6,12 @@
     @method('delete')
     @csrf
 </form>
-<button form="{{ "delete-form-$id" }}" class=" btn btn-sm btn-outline-dark">
+@php
+    
+$default = [
+    "class" =>" btn btn-sm btn-outline-dark"
+];
+@endphp
+<button form="{{ "delete-form-$id" }}" {{ $attributes->merge($default) }}>
     <i class=" bi bi-trash3"></i>
 </button>

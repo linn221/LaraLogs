@@ -1,6 +1,6 @@
 ### Functions
-* [!] move UploadImage code to ImageController
-* [!] delete image file on delete
+* [x] move UploadImage code to ImageController
+* [@] delete image file on delete
 * [x] migration table category, logs
 * [x] CRUD category, CRUD logs
 * [x] validation, repopulation, error messages
@@ -26,6 +26,7 @@
 
 ### Features
 * [x] add status
+* [ ] user profile, image, bio, a public one, and a private editable one
 * [ ] fileter by updated, created date
 * [ ] sort by id, updated, created, title
 * [ ] sort by id, updated, created, title (for category)
@@ -54,6 +55,8 @@
 * [ ] a log having duplicate tags, validation or something
 * [ ] strained foreign key relationship, on casacade
 * [@] admin index, banner not showing because of updated url
+* [@] redirect to /home after authenticated, might have to redirect /home to /dashboard/home, but im not sure
+* [@] images fucked
 
 ### UI 
 * [x] show validation errors

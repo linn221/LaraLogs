@@ -2,8 +2,17 @@
 @section('content')
     {{-- {{ $errors }} --}}
     <div class=" container-sm">
+        {{-- showing uploaded images --}}
+        @foreach ($log->images as $image)
+            <x-image.edit :image="$image" />
+            <br>
+            {{-- <x-image.edit :image="$image" /> --}}
+        @endforeach
+        {{-- <button>trash</button> --}}
+        <input form="imageForm" type="file" name="images[]" class=" form-control form-control-file mb-5" multiple
+            onchange="document.querySelector('#imageForm').submit()">
         <div class="row">
-            <h3>Add New Log</h3>
+            <h3>Edit Log</h3>
             <hr>
             <form action="{{ route('logs.update', $log->id) }}" id="createLogForm" method="post">
                 @csrf
