@@ -64,12 +64,13 @@
 * [@] admin index, banner not showing because of updated url
 * [@] redirect to /home after authenticated, might have to redirect /home to /dashboard/home, but im not sure
 * [@] images fucked
+* [@] many to many relationship, not casacding
 
 ### UI 
 * [x] show validation errors
 * [x] view files for category
-* [x] view files for logs
 * [x] show something for empty cases
+* [x] view files for logs
 * [x] autofocus input
 * [x] convert select box to radio buttons (selecting category)
 * [x] clicking a category will go to log listing page, filtered by that selected category
