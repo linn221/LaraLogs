@@ -10,4 +10,5 @@
         if there was a mistake, you can cancel the subscription <a href="#">here</a>
         <i>remember you will have to validate email address if you want to subscribe again.</i>
     </p>
+    Thanks!
 </p>

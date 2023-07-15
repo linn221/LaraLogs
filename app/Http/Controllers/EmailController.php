@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEmailRequest;
 use App\Http\Requests\UpdateEmailRequest;
+use App\Mail\InformativeMail;
+use App\Mail\NewPostMail;
 use App\Models\Email;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
@@ -18,12 +21,15 @@ class EmailController extends Controller
 
     public function subscribe(StoreEmailRequest $request)
     {
-        $email = new Email();
-        $email->address = $request->input('address');
+        $email = new Email;
+        $email->address = $request->input('email-address');
         $email->token = fake()->password(18);
         $email->save();
         // send email on observer
-        $this->mail('subscribe', 'unsubscribe', $email);
+        // Mail::to($email->address)->send();
+        Mail::to($email->address)->send(new InformativeMail($email->token, "Subscripion success to " . env('APP_NAME')));
+        // Mail::to('linncoffeee@gmail.com')->send(new InformativeMail('shit', 'hello world'));
+        // $this->mail('subscribe', 'unsubscribe', $email);
         return redirect()->back()->with(['status' => 'YOu now have active scription to new posts. You can unsubscribe from the link in the email but be cautious becuase you can only subscribe again by the re-subscribe link for non-verified accounts']);
         //
     }
@@ -46,16 +52,18 @@ class EmailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function cancel(UpdateEmailRequest $request, Email $email)
+    public function cancel(UpdateEmailRequest $request)
     {
-        if ($email->token == $request->input('token')) {
-            $email->subscribed_at = null;
-            $email->token = fake()->password(16);
-            $email->save();
-            $this->mail('canceled email', 're-subscribe', $email);
-            return redirect()->back();
-        }
-        return redirect()->back()->with(['status' => 'Invalid verification request']);
+        return 'You are ready to cancel your subscription '. $request->query('token');
+        return $request;
+        // if ($email->token == $request->input('token')) {
+        //     $email->subscribed_at = null;
+        //     $email->token = fake()->password(16);
+        //     $email->save();
+        //     $this->mail('canceled email', 're-subscribe', $email);
+        //     return redirect()->back();
+        // }
+        // return redirect()->back()->with(['status' => 'Invalid verification request']);
         //
     }
 

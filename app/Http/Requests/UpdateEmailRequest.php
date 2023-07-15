@@ -22,7 +22,7 @@ class UpdateEmailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'address' => 'required|exists:emails,address',
+            // 'address' => 'required|exists:emails,address',
             'token' => 'required|min:16|max:20|string'
             //
         ];

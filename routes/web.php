@@ -51,12 +51,11 @@ Route::controller(PageController::class)->group(function() {
 // email subscription and following post
 Route::prefix('email')->group(function () {
     Route::post('/subscribe', [EmailController::class, 'subscribe'])->name('email.sub');
-    Route::get('/unsubscribe')->name('email.unsub');
-    Route::patch('/unsubscribe')->name('email.unsub');
-    Route::get('/resubscribe')->name('email.resub');
+    Route::get('/unsubscribe', [EmailController::class, 'cancel'])->name('email.unsub');
+    Route::get('/resubscribe');
     Route::get('/verify')->name('email.verify');
     Route::get('/delete')->name('email.delete');
-    Route::delete('/delete')->name('email.delete');
+    Route::delete('/delete');
 });
 
 

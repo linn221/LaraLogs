@@ -31,6 +31,7 @@
 
 ### Features
 * [x] add status
+* [ ] admin listing the subscribers, getting notified by email on config settings, schedule or every subscribe
 * [ ] add update title and text box for added paragraph, store the input with ** edit, and timestamp
 * [ ] user profile, image, bio, a public one, and a private editable one
 * [ ] fileter by updated, created date

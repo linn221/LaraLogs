@@ -22,14 +22,14 @@ class StoreEmailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'address' => 'required|email'
+            'email-address' => 'required|email|unique:emails,address'
             //
         ];
     }
 
-    public function messages()
-    {
-            $status  = 'You already have an active subscription. No need to subscribe twice. in case you have canceled subscription, you can subscribe back by clicking the re-subscribe link in our email. thanks';
+    // public function messages()
+    // {
+    //         // $status  = 'You already have an active subscription. No need to subscribe twice. in case you have canceled subscription, you can subscribe back by clicking the re-subscribe link in our email. thanks';
         
-    }
+    // }
 }

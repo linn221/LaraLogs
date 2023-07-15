@@ -4,6 +4,7 @@
         <div class="row">
             <div class="col-12">
 
+                <x-subscribe />
                 <x-search-bar />
                 <div class=" mt-5">
                     {{-- i know, DRY, component? --}}
