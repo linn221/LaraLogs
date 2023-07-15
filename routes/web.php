@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CoffeeController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LogController;
@@ -45,6 +46,17 @@ Route::controller(PageController::class)->group(function() {
     Route::get('/tag/{tag}', 'tag')->name('page.tag');
     Route::get('/category/{category}', 'category')->name('page.category');
     Route::get('/log/{log}', 'log')->name('page.log');
+});
+
+// email subscription and following post
+Route::prefix('email')->group(function () {
+    Route::post('/subscribe', [EmailController::class, 'subscribe'])->name('email.sub');
+    Route::get('/unsubscribe')->name('email.unsub');
+    Route::patch('/unsubscribe')->name('email.unsub');
+    Route::get('/resubscribe')->name('email.resub');
+    Route::get('/verify')->name('email.verify');
+    Route::get('/delete')->name('email.delete');
+    Route::delete('/delete')->name('email.delete');
 });
 
 
