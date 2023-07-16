@@ -14,11 +14,7 @@ class EmailController extends Controller
 {
     /**
      * Store a newly created resource in storage.
-     */
-    private function mail($action, $link, $email) {
-        logger("$action email for $email->address with $link link");
-    }
-
+    */
     public function subscribe(StoreEmailRequest $request)
     {
         $email = new Email;
@@ -26,26 +22,9 @@ class EmailController extends Controller
         $email->token = fake()->password(18);
         $email->save();
         // send email on observer
-        // Mail::to($email->address)->send();
-        Mail::to($email->address)->send(new InformativeMail($email->token, "Subscripion success to " . env('APP_NAME')));
-        // Mail::to('linncoffeee@gmail.com')->send(new InformativeMail('shit', 'hello world'));
-        // $this->mail('subscribe', 'unsubscribe', $email);
-        return redirect()->back()->with(['status' => 'YOu now have active scription to new posts. You can unsubscribe from the link in the email but be cautious becuase you can only subscribe again by the re-subscribe link for non-verified accounts']);
-        //
-    }
-    /**
-     * Update the specified resource in storage.
-     */
-    public function verify(UpdateEmailRequest $request, Email $email)
-    {
-        // yellow, will be better to do it in Requests
-        if ($email->token == $request->input('token')) {
-            $email->token = fake()->password(16);
-            $email->verfied_at = now();
-            $this->mail('verification success', 'delete email', $email);
-            return redirect()->back();
-        }
-        return redirect()->back()->with(['status' => 'Invalid verification request']);
+        Mail::to($email->address)->send(new InformativeMail("Subscripion success", 'success', $email));
+        return redirect()->back()->with(['status' => 'YOu now have active scription to new posts. You can unsubscribe from the link in the email']);
+        // return redirect()->back()->with(['status' => 'YOu now have active scription to new posts. You can unsubscribe from the link in the email but be cautious becuase you can only subscribe again by the re-subscribe link for non-verified accounts']);
         //
     }
 
@@ -54,29 +33,33 @@ class EmailController extends Controller
      */
     public function cancel(UpdateEmailRequest $request)
     {
-        return 'You are ready to cancel your subscription '. $request->query('token');
-        return $request;
-        // if ($email->token == $request->input('token')) {
-        //     $email->subscribed_at = null;
-        //     $email->token = fake()->password(16);
-        //     $email->save();
-        //     $this->mail('canceled email', 're-subscribe', $email);
-        //     return redirect()->back();
-        // }
-        // return redirect()->back()->with(['status' => 'Invalid verification request']);
-        //
-    }
-
-    public function resubscribe(UpdateEmailRequest $request, Email $email)
-    {
-        if ($email->token == $request->input('token')) {
-            $email->subscribed_at = now();
-            $email->verified = now();
-            $email->token = fake()->password(16);
+        $email = Email::where('address', $request->query('email'))->first();
+        // die($email);
+        if ($email->token == $request->query('token')) {
+            $email->subscribed_at = null;
+            $email->token = fake()->password(18);
             $email->save();
-            $this->mail('verification success', 'delete email', $email);
-            return redirect()->back()->with(['status' => 'You have resubscribed and verified your email address. you may delete the subscription by link in new email, thanks']);
+            Mail::to($email->address)->send(new InformativeMail("Subscripion canceled.", 'cancel'));
+            return redirect()->route('page.index')->with(['status' => 'subscription successfully canceled']);
+            // return redirect()->route('page.index')->with(['status' => 'scription successfully canceled. find link to re-subscribe again at new email, which is the only way to restore subscription for non-verified addresses']);
         }
+
         return redirect()->back()->with(['status' => 'Invalid verification request']);
     }
+    /**
+     * Update the specified resource in storage.
+     */
+    // public function verify(UpdateEmailRequest $request)
+    // {
+    //     // yellow, will be better to do it in Requests
+    //     $email = Email::find($request->query('email'));
+    //     if ($email->token == $request->query('token')) {
+    //         $email->token = fake()->password(18);
+    //         $email->verfied_at = now();
+    //         Mail::to($email->address)->send(new InformativeMail("Email Varified successfully", 'verified'));
+    //         return redirect()->route('page.index')->with(['staus' => 'Email have been verified successfully']);
+    //     }
+    //     return redirect()->route('page.index')->with(['status' => 'Invalid verification request']);
+    //     //
+    // }
 }

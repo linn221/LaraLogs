@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Email;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,7 +17,7 @@ class InformativeMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public string $token, protected string $sub)
+    public function __construct(protected string $sub, public string $action, public $email=null)
     {
         $this->subject($sub);
         //
@@ -38,7 +39,7 @@ class InformativeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.information',
+            view: 'mail.subscribe-info',
         );
     }
 
