@@ -23,7 +23,7 @@ class UpdateEmailRequest extends FormRequest
     {
         return [
             'email' => 'required|exists:emails,address',
-            'token' => 'required|min:16|max:20|string'
+            'token' => 'required|min:16|max:20'
             //
         ];
     }

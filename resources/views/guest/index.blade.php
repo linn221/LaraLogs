@@ -1,4 +1,5 @@
 @extends('layouts.app')
+{{ $errors }}
 @section('content')
     <div class=" container">
         <div class="row">

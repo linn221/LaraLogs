@@ -21,9 +21,7 @@ class CoffeeController extends Controller
     {
         // $subscribers = Email::query()->where('subscribed_at')->get();
         $subscribers = Email::whereNot('subscribed_at')->get();
-        foreach($subscribers as $subscriber) {
-            Mail::to($subscriber->address)->send(new NewPostMail(Log::find(1), $subscriber));
-        }
+        dd($subscribers[0]);
         // $image = Image::first();
         // $img = asset(Storage::url($image->uri));
         // return view('beer', compact('img'));

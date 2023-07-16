@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('emails', function (Blueprint $table) {
             $table->id();
             $table->string('address');
-            $table->timestamp('verfied_at')->nullable();
+            $table->timestamp('verfied_at')->nullable()->default(null);
             $table->timestamp('subscribed_at')->nullable()->default(now());
             $table->string('token');
             $table->timestamps();

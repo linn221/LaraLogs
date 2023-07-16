@@ -66,6 +66,7 @@
 * [@] redirect to /home after authenticated, might have to redirect /home to /dashboard/home, but im not sure
 * [@] images fucked
 * [@] many to many relationship, not casacding
+* [@] input lost when uploading image
 
 ### UI 
 * [x] show validation errors

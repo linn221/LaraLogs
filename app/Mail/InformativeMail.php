@@ -17,9 +17,9 @@ class InformativeMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(protected string $sub, public string $action, public $email=null)
+    public function __construct(public string $action, public Email $email)
     {
-        $this->subject($sub);
+        $this->subject("Email $action success");
         //
     }
 
