@@ -1,14 +1,20 @@
 <h3>Dear Subscriber,</h3>
 <p>
-    {{ env("APP_NAME") }} has published a new post on {{ $log->category }}. You many want to check that out.
-    <a href="{{ route('page.log', $log->id) }}"
+    {{ env('APP_NAME') }} has published a new post on {{ $log->category->name }}, titled
+    <strong> {{ $log->title }}. </strong>
+    You many want to check that out by the following link:
+    <a href="{{ route('page.log', $log->id) }}">
         {{ route('page.log', $log->id) }}
     </a>
-    {{-- show tags here for later --}}
+</p>
+{{-- show tags here for later --}}
 
-    <p>
-        if there was a mistake, you can cancel the subscription <a href="#">here</a>
-        <i>remember you will have to validate email address if you want to subscribe again.</i>
-    </p>
+<p>
+
+    <i>
+        this email is sent to {{ $email->address }} if there was a mistake, you can cancel the subscription <a
+            href="{{ route('email.unsub', ['email' => $email->address, 'token' => $email->token]) }}">here</a>
+    </i>
+    <br>
     Thanks!
 </p>

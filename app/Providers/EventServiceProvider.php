@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Image;
+use App\Models\Log;
 use App\Observers\ImageObserver;
+use App\Observers\LogObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -29,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
     {
         //
         Image::observe(ImageObserver::class);
+        Log::observe(LogObserver::class);
     }
 
     /**

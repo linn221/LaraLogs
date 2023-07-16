@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Email;
 use App\Models\Log;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -17,7 +18,7 @@ class NewPostMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(protected Log $log)
+    public function __construct(public Log $log, public Email $email)
     {
         //
     }
@@ -28,7 +29,7 @@ class NewPostMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Post from ' . env("APP_NAME"),
+            subject: 'New Post, dear',
         );
     }
 

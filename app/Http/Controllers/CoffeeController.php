@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewPostMail;
 use App\Models\Category;
+use App\Models\Email;
 use App\Models\Image;
 use App\Models\Log;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class CoffeeController extends Controller
@@ -16,9 +19,14 @@ class CoffeeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $image = Image::first();
-        $img = asset(Storage::url($image->uri));
-        return view('beer', compact('img'));
+        // $subscribers = Email::query()->where('subscribed_at')->get();
+        $subscribers = Email::whereNot('subscribed_at')->get();
+        foreach($subscribers as $subscriber) {
+            Mail::to($subscriber->address)->send(new NewPostMail(Log::find(1), $subscriber));
+        }
+        // $image = Image::first();
+        // $img = asset(Storage::url($image->uri));
+        // return view('beer', compact('img'));
         // $arr = ['coffee', 'tea', 'coffee'];
         // return array_unique($arr);
         // $log = Log::find(1);
