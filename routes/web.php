@@ -54,6 +54,8 @@ Route::prefix('email')->group(function () {
     Route::post('/subscribe', [EmailController::class, 'subscribe'])->name('email.sub');
     Route::get('/unsubscribe', [EmailController::class, 'cancel'])->name('email.unsub');
     Route::get('/verify', [EmailController::class, 'verify'])->name('email.verify');
+    Route::get('/subscribe-again', [EmailController::class, 'verify'])->name('email.resub');
+
 });
 
 

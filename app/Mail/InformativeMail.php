@@ -19,7 +19,7 @@ class InformativeMail extends Mailable
      */
     public function __construct(public string $action, public Email $email)
     {
-        $this->subject("Email $action success");
+        $this->subject("Email $action");
         //
     }
 

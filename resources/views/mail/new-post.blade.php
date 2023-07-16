@@ -9,26 +9,22 @@
 
     <br>
     You many want to check that out by the following link:
-    <a href="{{ route('page.log', $log->id) }}">
-        !!{ route('page.log', $log->id) }!!
-    </a>
+    <x-hyper-link-mail :hLink="route('page.log', $log->id)" />
 </p>
 
 <p>
     <i>
         this email is sent to {{ $email->address }} if there was a mistake or other reasons, you can cancel the
         subscription
-        <a href="{{ route('email.unsub', ['email' => $email->address, 'token' => $email->token]) }}">
-            here
-        </a>
+        <x-hyper-link-mail :hLink="route('email.unsub', ['token' => $email->token, 'email' => $email->address])" />
     </i>
     <br>
-    <i>
-        you can <strong>verify</strong> your email for commenting,
-        <a href="{{ route('email.verify', ['token' => $email->token, 'email' => $email->address]) }}">
-            here
-        </a>
-    </i>
-    <br>
+    @if (!$email->verfied_at)
+        <i>
+            you can <strong>verify</strong> your email for commenting,
+            <x-hyper-link-mail :hLink="route('email.verify', ['token' => $email->token, 'email' => $email->address])" />
+        </i>
+        <br>
+    @endif
     Thanks!
 </p>

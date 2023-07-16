@@ -52,7 +52,7 @@ class EmailController extends Controller
     public function verify(UpdateEmailRequest $request)
     {
         // yellow, will be better to do it in Requests
-        $email = Email::find($request->query('email'));
+        $email = Email::where('address', $request->query('email'))->first();
         if ($email->token == $request->query('token')) {
             $email->token = fake()->password(18);
             $email->subscribed_at = now();
