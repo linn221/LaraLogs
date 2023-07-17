@@ -6,12 +6,16 @@ use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Log;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PageController extends Controller
 {
     //
     public function index(Request $request)
     {
+        $this->validate($request, [
+            'sort' => [Rule::in(['category_id', 'title', 'created_at'])]
+        ]);
         $query = Log::query();
         // searching
         $query->when($request->input('q'), function($query, string $q) {
@@ -19,11 +23,15 @@ class PageController extends Controller
             ->orWhere('content', 'like', "%$q%");
         });
         // sorting & pagination
-        $sort = 'updated_at';
-        $logs = $query->latest($sort)->paginate(10)->withQueryString();
+        $sort = $request->query('sort') ?? 'updated_at';
+        $order = $request->query('order') ?? 'desc';
+        
+        $logs = $query->orderBy($sort, $order)
+        ->paginate(10)->withQueryString();
         return view('guest.index', compact('logs'));
 
     }
+
     public function tag(Request $request, Tag $tag)
     {
         // copy & paste from controller code

@@ -40,10 +40,21 @@
                 <table class=" table table-warning">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Category</th>
-                            <th>Tags</th>
-                            <th>Posted</th>
+                            {{-- yellow, make them post request and store in sesssion? --}}
+                            <th>
+                                <x-norm-link :hLink="route('page.index', ['sort' => 'title', 'order' => request()->order == 'desc' ? 'asc' : 'desc'])" hText='Title' />
+                            </th>
+                            <th>
+                                <x-norm-link :hLink="route('page.index', ['sort' => 'category_id', 'order' => request()->order == 'desc' ? 'asc' : 'desc'])" hText='Category' />
+                            </th>
+                            <th>
+                                Tags
+                            </th>
+                            <th>
+                                <x-norm-link :hLink="route('page.index', ['sort' => 'created_at', 'order' => request()->order == 'desc' ? 'asc' : 'desc'])" hText='Posted' />
+                            </th>
+                            {{-- <th>Tags</th>
+                            <th>Posted</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -73,7 +84,7 @@
                                     <p class=" small mb-0">
                                         <i class=" bi bi-clock"></i>
 
-                                        {{ $log->created_at->format('h:i a') }}
+                                        {{ $log->created_at->diffForHumans() }}
                                     </p>
                                     <p class=" small mb-0">
                                         <i class=" bi bi-calendar"></i>
