@@ -27,7 +27,7 @@ Auth::routes();
 
 // admin
 Route::middleware('auth')->prefix('dashboard')->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/', [LogController::class, 'index']);
     Route::resource('/categories', CategoryController::class);
     Route::resource('/logs', LogController::class);
     Route::resource('/tags', TagController::class);
@@ -38,15 +38,16 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::delete('/images/{image}', [ImageController::class, 'destroy'])->name('delete-image');
 });
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 // index 
 // Route::middleware('auth')->get('/', [LogController::class, 'index'])->name('home');
 
 // public, guest users
-Route::controller(PageController::class)->group(function() {
+Route::controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('page.index');
     Route::get('/tag/{tag}', 'tag')->name('page.tag');
     Route::get('/category/{category}', 'category')->name('page.category');
-    Route::get('/log/{log}', 'log')->name('page.log');
+    Route::get('/post/{log}', 'log')->name('page.log');
 });
 
 // email subscription and following post

@@ -27,7 +27,7 @@
 * [ ] comement anonymously first
 
 ### Refactor
-* [ ] Eager loading for category of log
+* [ ] Eager loading for category of log (Optimize database query)
 
 ### Features
 * [x] add status
@@ -81,7 +81,7 @@
 * [x] pagination links at the top, aligned right with search bar
 * [x] add edit button in show page
 * [x] update hyper links (using component)
-* [@] informative action status
+* [x] informative action status
 * [@] create components for each log, detail log
 * [@] different for humans timestamp
 * [ ] inform how many items are found with search
