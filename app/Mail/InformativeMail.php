@@ -17,9 +17,8 @@ class InformativeMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public string $action, public Email $email)
+    public function __construct(protected string $action, protected string $sub, public Email $email)
     {
-        $this->subject("Email $action");
         //
     }
 
@@ -29,7 +28,7 @@ class InformativeMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: ''
+            subject: $this->sub
         );
     }
 
@@ -39,7 +38,7 @@ class InformativeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.subscribe-info',
+            view: "mail.subscribe.$this->action",
         );
     }
 

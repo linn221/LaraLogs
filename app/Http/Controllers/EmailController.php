@@ -22,7 +22,7 @@ class EmailController extends Controller
         $email->token = fake()->password(18);
         $email->save();
         // send email on observer
-        Mail::to($email->address)->send(new InformativeMail('success', $email));
+        Mail::to($email->address)->send(new InformativeMail('success', 'Subscription success' , $email));
         return redirect()->back()->with(['status' => 'YOu now have active scription to new posts. You can unsubscribe from the link in the email']);
         // return redirect()->back()->with(['status' => 'YOu now have active scription to new posts. You can unsubscribe from the link in the email but be cautious becuase you can only subscribe again by the re-subscribe link for non-verified accounts']);
         //
@@ -39,28 +39,27 @@ class EmailController extends Controller
             $email->subscribed_at = null;
             $email->token = fake()->password(18);
             $email->save();
-            Mail::to($email->address)->send(new InformativeMail('cancel', $email));
+            Mail::to($email->address)->send(new InformativeMail('cancel', 'Cancel subscription success' ,$email));
             return redirect()->route('page.index')->with(['status' => 'subscription successfully canceled']);
             // return redirect()->route('page.index')->with(['status' => 'scription successfully canceled. find link to re-subscribe again at new email, which is the only way to restore subscription for non-verified addresses']);
         }
 
-        return redirect()->route('page.index')->with(['status' => 'Invalid verification request']);
+        return redirect()->route('page.index')->with(['status' => 'Invalid validation request']);
     }
-    /**
-     * Update the specified resource in storage.
-     */
-    public function verify(UpdateEmailRequest $request)
+
+    public function resubscribe(UpdateEmailRequest $request)
     {
-        // yellow, will be better to do it in Requests
         $email = Email::where('address', $request->query('email'))->first();
+        // die($email);
         if ($email->token == $request->query('token')) {
-            $email->token = fake()->password(18);
             $email->subscribed_at = now();
-            $email->verfied_at = now();
+            $email->token = fake()->password(18);
             $email->save();
-            Mail::to($email->address)->send(new InformativeMail('verified', $email));
-            return redirect()->route('page.index')->with(['status' => 'Email have been verified successfully']);
+            Mail::to($email->address)->send(new InformativeMail('resub', 'Subscription success', $email));
+            return redirect()->route('page.index')->with(['status' => 'subscription successfully restored']);
+            // return redirect()->route('page.index')->with(['status' => 'scription successfully canceled. find link to re-subscribe again at new email, which is the only way to restore subscription for non-verified addresses']);
         }
-        return redirect()->route('page.index')->with(['status' => 'Invalid verification request']);
+
+        return redirect()->route('page.index')->with(['status' => 'Invalid validation request']);
     }
 }
