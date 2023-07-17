@@ -19,9 +19,9 @@ class LogController extends Controller
     {
         $query = Log::query();
         // searching
-        $query->when($request->input('q'), function(Builder $query, string $q) {
+        $query->when($request->input('q'), function (Builder $query, string $q) {
             $query->where('title', 'like', "%$q%")
-            ->orWhere('content', 'like', "%$q%");
+                ->orWhere('content', 'like', "%$q%");
         });
         // sorting & pagination
         $sort = 'updated_at';
@@ -54,12 +54,18 @@ class LogController extends Controller
         }
         // images
         if ($temp_images = Log::find(1)->images) {
-            foreach($temp_images as $image) {
+            foreach ($temp_images as $image) {
                 $image->log_id = $log->id;
                 $image->save();
             }
         }
-        return redirect()->route('logs.index')->with(['status' => 'Log created successfully'. $log->id]);
+        // i want to use like a status object, with message, and action, and model class, but dumpy string for now
+        $status = "Log created at #$log->id: ".
+        "<a href='". route('logs.show', $log->id) . "' class=' text-decoration-none'>Show</a> ".
+        "<a href='". route('logs.edit', $log->id) . "' class=' text-decoration-none'>Edit</a> "
+        ;
+        return redirect()->route('logs.index')
+            ->with(['status' => $status]);
         //
     }
 
@@ -92,7 +98,12 @@ class LogController extends Controller
         $log->save();
         $log->tags()->sync($request->input('tags'));
         // return redirect()->route('logs.index');
-        return redirect()->route('logs.index')->with(['status' => 'Log updated successfully#' . $log->id, 'status-color' => 'warning']);
+        $status = "Log updated at #$log->id: ".
+        "<a href='". route('logs.show', $log->id) . "' class=' text-decoration-none'>Show</a> ".
+        "<a href='". route('logs.edit', $log->id) . "' class=' text-decoration-none'>Edit</a> "
+        ;
+        return redirect()->route('logs.index')
+            ->with(['status' => $status, 'status-color' => 'warning']);
         //
     }
 
@@ -103,7 +114,9 @@ class LogController extends Controller
     {
         $id = $log->id;
         $log->delete();
-        return redirect()->route('logs.index')->with(['status' => 'Log removed successfully#' . $id, 'status-color' => 'danger']);
+        $status = "Log deleted at #$log->id: Restore button";
+        return redirect()->route('logs.index')
+            ->with(['status' => $status, 'status-color' => 'danger']);
         // return redirect()->route('logs.index');
         //
     }

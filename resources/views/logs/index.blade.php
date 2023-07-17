@@ -6,7 +6,7 @@
                 <x-search-bar />
                 <div class=" mt-5">
                     {{-- i know, DRY, component? --}}
-                    @if (request()->is('tags/*'))
+                    @if (request()->is('*/tags/*'))
                         <h3>
                             Showing logs under
                             <span class=" text-primary">
@@ -18,7 +18,7 @@
                         </h3>
                     @endif
 
-                    @if (request()->is('categories/*'))
+                    @if (request()->is('*/categories/*'))
                         <h3>
                             Showing logs in
                             <span class=" text-success">
