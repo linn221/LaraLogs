@@ -48,7 +48,7 @@
                     </thead>
                     <tbody>
                         @forelse ($logs as $log)
-                            <tr>
+                            <tr @class(['table-active' => $log->trashed()])>
                                 <td>
                                     <x-norm-link :hLink="route('logs.edit', $log->id)" :hText="$log->id" class=" text-success" />
                                 </td>

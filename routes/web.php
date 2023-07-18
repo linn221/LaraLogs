@@ -30,6 +30,8 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/', [LogController::class, 'index']);
     Route::resource('/categories', CategoryController::class);
     Route::resource('/logs', LogController::class);
+    Route::get('/logs/{log}/restore', [LogController::class, 'restore'])->name('logs.restore');
+
     Route::resource('/tags', TagController::class);
     Route::get('/tags/{tag}', [TagController::class, 'showLogs'])->name('logs.index.tag');
     Route::get('/categories/{category}', [CategoryController::class, 'showLogs'])->name('logs.index.category');

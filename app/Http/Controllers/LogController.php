@@ -18,6 +18,12 @@ class LogController extends Controller
     public function index(Request $request)
     {
         $query = Log::query();
+
+        // showing trash items
+        $query->when($request->has('trash-bin'), function ($query) {
+            $query->withTrashed();
+        });
+
         // searching
         $query->when($request->input('q'), function (Builder $query, string $q) {
             $query->where('title', 'like', "%$q%")
@@ -60,10 +66,9 @@ class LogController extends Controller
             }
         }
         // i want to use like a status object, with message, and action, and model class, but dumpy string for now
-        $status = "Log created at #$log->id: ".
-        "<a href='". route('logs.show', $log->id) . "' class=' text-decoration-none'>Show</a> ".
-        "<a href='". route('logs.edit', $log->id) . "' class=' text-decoration-none'>Edit</a> "
-        ;
+        $status = "Log created at #$log->id: " .
+            "<a href='" . route('logs.show', $log->id) . "' class=' text-decoration-none'>Show</a> " .
+            "<a href='" . route('logs.edit', $log->id) . "' class=' text-decoration-none'>Edit</a> ";
         return redirect()->route('logs.index')
             ->with(['status' => $status]);
         //
@@ -98,10 +103,9 @@ class LogController extends Controller
         $log->save();
         $log->tags()->sync($request->input('tags'));
         // return redirect()->route('logs.index');
-        $status = "Log updated at #$log->id: ".
-        "<a href='". route('logs.show', $log->id) . "' class=' text-decoration-none'>Show</a> ".
-        "<a href='". route('logs.edit', $log->id) . "' class=' text-decoration-none'>Edit</a> "
-        ;
+        $status = "Log updated at #$log->id: " .
+            "<a href='" . route('logs.show', $log->id) . "' class=' text-decoration-none'>Show</a> " .
+            "<a href='" . route('logs.edit', $log->id) . "' class=' text-decoration-none'>Edit</a> ";
         return redirect()->route('logs.index')
             ->with(['status' => $status, 'status-color' => 'warning']);
         //
@@ -110,14 +114,34 @@ class LogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Log $log)
+    public function destroy(int $log)
     {
+        $log = Log::withTrashed()->findOrFail($log);
         $id = $log->id;
-        $log->delete();
-        $status = "Log deleted at #$log->id: Restore button";
+        if ($log->trashed()) {
+            $log->forceDelete();
+            $status = "Log deleted permanently #$id";
+        } else {
+            $log->delete();
+            $status = "Log deleted at #$log->id:" .
+                "<a href='" . route('logs.restore', $id) . "' class=' text-decoration-none'>Restore</a> ";
+        }
         return redirect()->route('logs.index')
             ->with(['status' => $status, 'status-color' => 'danger']);
         // return redirect()->route('logs.index');
         //
+    }
+
+    public function restore(int $log)
+    {
+        $log = Log::withTrashed()->findOrFail($log);
+        if ($log->trashed()) {
+            $log->restore();
+            $status = "Log restored at #$log->id: " .
+                "<a href='" . route('logs.show', $log->id) . "' class=' text-decoration-none'>Show</a> " .
+                "<a href='" . route('logs.edit', $log->id) . "' class=' text-decoration-none'>Edit</a> ";
+            return redirect()->route('logs.index')->with(['status' => $status]);
+        }
+        return redirect()->route('logs.index')->with(['status' => 'cannot restore a log that is not deleted']);
     }
 }
