@@ -18,12 +18,12 @@ class LogObserver
         // send email notification
         $subscribers = Email::whereNot('subscribed_at')->get();
         foreach($subscribers as $subscriber) {
-            Mail::to($subscriber->address)->send(new NewPostMail($log, $subscriber));
+            Mail::to($subscriber->address)->
+            later(now()->addSeconds(30), new NewPostMail($log, $subscriber));
         }
         // foreach($subscribers as $subscriber) {
         //     Mail::to($subscriber)->send(new NewPostMail($log));
         // }
-        
     }
 
     /**

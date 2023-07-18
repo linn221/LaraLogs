@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InformativeMail;
 use App\Mail\NewPostMail;
 use App\Models\Category;
 use App\Models\Email;
@@ -20,8 +21,9 @@ class CoffeeController extends Controller
     public function __invoke(Request $request)
     {
         // $subscribers = Email::query()->where('subscribed_at')->get();
-        $subscribers = Email::whereNot('subscribed_at')->get();
-        dd($subscribers[0]);
+        $email = Email::first();
+        Mail::to($email->address)->later(now()->addSeconds(30), new InformativeMail('success', 'Subscription success' , $email));
+        // dd($subscribers[0]);
         // $image = Image::first();
         // $img = asset(Storage::url($image->uri));
         // return view('beer', compact('img'));
