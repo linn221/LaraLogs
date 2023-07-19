@@ -39,16 +39,25 @@
                         <tr>
                             {{-- yellow, make them post request and store in sesssion? --}}
                             <th>
-                                <x-norm-link :hLink="route('page.index', ['sort' => 'title', 'order' => request()->order == 'desc' ? 'asc' : 'desc'])" hText='Title' />
+                                <x-norm-link :hLink="route('page.index', [
+                                    'sort' => 'title',
+                                    'order' => request()->order == 'desc' ? 'asc' : 'desc',
+                                ])" hText='Title' />
                             </th>
                             <th>
-                                <x-norm-link :hLink="route('page.index', ['sort' => 'category_id', 'order' => request()->order == 'desc' ? 'asc' : 'desc'])" hText='Category' />
+                                <x-norm-link :hLink="route('page.index', [
+                                    'sort' => 'category_id',
+                                    'order' => request()->order == 'desc' ? 'asc' : 'desc',
+                                ])" hText='Category' />
                             </th>
                             <th>
                                 Tags
                             </th>
                             <th>
-                                <x-norm-link :hLink="route('page.index', ['sort' => 'created_at', 'order' => request()->order == 'desc' ? 'asc' : 'desc'])" hText='Posted' />
+                                <x-norm-link :hLink="route('page.index', [
+                                    'sort' => 'created_at',
+                                    'order' => request()->order == 'desc' ? 'asc' : 'desc',
+                                ])" hText='Posted' />
                             </th>
                             {{-- <th>Tags</th>
                             <th>Posted</th> --}}
@@ -74,7 +83,7 @@
                                     {{-- no more, with using component --}}
                                     {{-- {{ dd($log->tags) }} --}}
                                     @foreach ($log->tags as $tag)
-                                        <x-tag-link :hLink="route('page.tag', $tag->id)" :hText="$tag->name" />
+                                        <x-norm-link :hLink="route('page.tag', $tag->id)" :hText="$tag->name" prepend='#'/>
                                     @endforeach
                                 </td>
                                 <td>
@@ -102,8 +111,34 @@
                 </table>
             </div>
             <div class="col-2">
-                <x-search-bar />
-                <x-subscribe />
+                <div class=" search-form mb-3">
+                    <form action="" class="">
+                        <div class="input-group">
+                            <input type="text" class=" form-control" name="q" value="{{ request()->q }}">
+                            <button class=" btn btn-sm btn-dark">
+                                <i class=" bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <form action="{{ route('email.sub') }}" method="post">
+                    @csrf
+                    {{-- <label for="subscribe-mail" class=" form-label">
+        Enter your Email Address
+    </label> --}}
+                    <input type="email" name="email-address" id="subscribe-mail"
+                        class=" form-control @error('email-address') {{ 'is-invalid' }} @enderror"
+                        value="{{ old('email-address', '') }}" placeholder="your email">
+
+                    <button class="btn btn-sm btn-danger w-100">
+                        Subscribe
+                    </button>
+                    @error('email-address')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </form>
             </div>
         </div>
     </div>

@@ -21,7 +21,7 @@
                             </a>
                         </span>
                         @foreach ($log->tags as $tag)
-                            <x-tag-link :hLink="route('page.tag', $tag->id)" :hText="$tag->name" />
+                            <x-norm-link :hLink="route('page.tag', $tag->id)" :hText="$tag->name" prepend='#'/>
                         @endforeach
                     </div>
                     <div class=" mt-4">

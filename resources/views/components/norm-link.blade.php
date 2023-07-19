@@ -1,9 +1,10 @@
 @props([
     'hLink',
-    'hText'
+    'hText',
+    'prepend' => ''
 ])
 <a href="{{ $hLink; }}"
 {{ $attributes->merge([ 'class' => 'text-decoration-none' ]) }}
 >
-    {{ $hText; }}
+    {{ $prepend . $hText; }}
 </a>

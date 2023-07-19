@@ -88,7 +88,7 @@
 * [x] show status like 'logs under linux or frontend', 'showing logs by query' at index listing page
 * [d] ugly pagination UI
 * [d] create components for each log, detail log
-* [@] different for humans timestamp
+* [x] different for humans timestamp
 
 ### Wonder
 * [ ] add private attributes in controller class??
