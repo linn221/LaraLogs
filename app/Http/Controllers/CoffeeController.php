@@ -21,6 +21,7 @@ class CoffeeController extends Controller
     public function __invoke(Request $request)
     {
         // $subscribers = Email::query()->where('subscribed_at')->get();
+        return route('email.unsub', ['email' => 'shit', 'token' => 'slkdsfd']);
         $email = Email::first();
         Mail::to($email->address)->later(now()->addSeconds(30), new InformativeMail('success', 'Subscription success' , $email));
         // dd($subscribers[0]);

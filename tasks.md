@@ -58,6 +58,7 @@
         (delete forms having the same id for different items)
 
 ### Fix
+* [@] email unsubscribe link pointing to localhost, instead of 127.0.0.1
 * [b] a log having duplicate tags, validation or something
 * [b] strained foreign key relationship, on casacade
 * [x] admin index, banner not showing because of updated url
