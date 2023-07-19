@@ -1,13 +1,10 @@
 @extends('layouts.app')
 {{ $errors }}
 @section('content')
-    <div class=" container">
-        <div class="row">
-            <div class="col-12">
-
-                <x-subscribe />
-                <x-search-bar />
-                <div class=" mt-5">
+    <div class=" container-sm">
+        <div class="row g-2">
+            <div class="col-10">
+                <div class="">
                     {{-- i know, DRY, component? --}}
                     @if (request()->is('tag/*'))
                         <h3>
@@ -103,6 +100,10 @@
                         @endforelse
                     </tbody>
                 </table>
+            </div>
+            <div class="col-2">
+                <x-search-bar />
+                <x-subscribe />
             </div>
         </div>
     </div>

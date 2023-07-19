@@ -3,7 +3,14 @@
     <div class=" container">
         <div class="row">
             <div class="col-12">
-                <x-search-bar />
+                @php
+                    $toggle_trash_bin = request()->has('trash-bin') ? route('logs.index') : route('logs.index', ['trash-bin']);
+                @endphp
+                <x-search-bar>
+                <a href="{{ $toggle_trash_bin }}" class=" btn">
+                    <i class="bi {{ request()->has('trash-bin') ? 'bi-trash3' : 'bi-trash3-fill' }}"></i>
+                </a>
+                </x-search-bar>
                 <div class=" mt-5">
                     {{-- i know, DRY, component? --}}
                     @if (request()->is('*/tags/*'))
