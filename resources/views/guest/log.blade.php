@@ -25,8 +25,9 @@
                             @endforeach
                         </div>
                     </div>
-                    <form action="{{ route('email.sub') }}" method="post">
+                    <form action="{{ route('email.follow') }}" method="post">
                         @csrf
+                        <input type="hidden" name="post-id" value="{{ $log->id }}">
                         {{-- <label for="subscribe-mail" class=" form-label">
         Enter your Email Address
     </label> --}}
@@ -49,7 +50,7 @@
                 <div class=" border border-success d-inline-block p-1 pe-4 mb-3">
                     <p class=" small mb-0">
                         <i class=" bi bi-clock"></i>
-                        
+
                         {{ $log->created_at->diffForHumans() }}
                     </p>
                     <p class=" small mb-0">
@@ -76,6 +77,16 @@
 
             </div>
         @endif
+    </div>
+    <div class="h4 mt-3">
+        Subscribers
+    </div>
+    <div class="list-group w-50">
+        @foreach ($log->emails as $email)
+            <div class=" list-group-item">
+                {{ $email->address }}
+            </div>
+        @endforeach
     </div>
     </div>
 @endsection

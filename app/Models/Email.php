@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Email extends Model
 {
     use HasFactory;
+
+    public function Logs() {
+        return $this->belongsToMany(Log::class);
+    }
 }

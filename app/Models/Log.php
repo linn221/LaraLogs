@@ -22,4 +22,9 @@ class Log extends Model
     public function Images() {
         return $this->hasMany(Image::class);
     }
+
+    public function Emails() {
+        return $this->belongsToMany(Email::class);
+    }
+
 }

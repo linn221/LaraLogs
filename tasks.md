@@ -26,6 +26,7 @@
 
 ### Refactor
 * [c] Eager loading for category of log (Optimize database query)
+* [c] every email object has default value for token
 
 ### Features
 * [x] add status
@@ -62,6 +63,7 @@
         something to do with queuing, which i cannot mind right now
 * [b] a log having duplicate tags, validation or something
 * [b] strained foreign key relationship, on casacade
+* [b] query getting their path lost, sorting 
 * [x] admin index, banner not showing because of updated url
 * [x] redirect to /home after authenticated, might have to redirect /home to /dashboard/home, but im not sure
         *edit, just create a route /home, after all, im not even sure the point of it

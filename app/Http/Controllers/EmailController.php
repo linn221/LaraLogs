@@ -7,7 +7,9 @@ use App\Http\Requests\UpdateEmailRequest;
 use App\Mail\InformativeMail;
 use App\Mail\NewPostMail;
 use App\Models\Email;
+use App\Models\Log;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
@@ -61,5 +63,24 @@ class EmailController extends Controller
         }
 
         return redirect()->route('page.index')->with(['status' => 'Invalid validation request']);
+    }
+
+    public function follow(Request $request) {
+        $request->validate([
+            'post-id' => "required|exists:logs,id",
+            'email-address' => 'required'
+        ]);
+        // create email if it doesn't exist on subscribers
+        $email = Email::where('address', $request->input('email-address'))->firstOr(function() {
+            $email = new Email;
+            $email->address = request()->input('email-address');
+            $email->subscribed_at = null;
+            $email->token = fake()->password(16);
+            $email->save();
+            return $email;
+        });
+
+        $email->logs()->attach($request->input('post-id'));
+        return redirect()->back()->with(['status' => 'subscription success']);
     }
 }
