@@ -57,6 +57,9 @@ Route::prefix('email')->group(function () {
     Route::post('/subscribe', [EmailController::class, 'subscribe'])->name('email.sub');
     Route::get('/unsubscribe', [EmailController::class, 'cancel'])->name('email.unsub');
     Route::get('/subscribe-again', [EmailController::class, 'resubscribe'])->name('email.resub');
+    
+    Route::post('/receive-updates', [EmailController::class, 'follow'])->name('email.follow');
+    Route::get('/unfollow', [EmailController::class, 'unfollow'])->name('email.unfollow');
 });
 
 
