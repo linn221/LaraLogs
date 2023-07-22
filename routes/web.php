@@ -49,7 +49,7 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('page.index');
     Route::get('/tag/{tag}', 'tag')->name('page.tag');
     Route::get('/category/{category}', 'category')->name('page.category');
-    Route::get('/post/{log}', 'log')->name('page.log');
+    Route::get('/log/{log}', 'log')->name('page.log');
 });
 
 // email subscription and following post

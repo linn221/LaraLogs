@@ -27,7 +27,7 @@
                     </div>
                     <form action="{{ route('email.follow') }}" method="post">
                         @csrf
-                        <input type="hidden" name="post-id" value="{{ $log->id }}">
+                        <input type="hidden" name="log-id" value="{{ $log->id }}">
                         {{-- <label for="subscribe-mail" class=" form-label">
         Enter your Email Address
     </label> --}}

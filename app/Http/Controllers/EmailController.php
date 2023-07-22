@@ -67,7 +67,7 @@ class EmailController extends Controller
 
     public function follow(Request $request) {
         $request->validate([
-            'post-id' => "required|exists:logs,id",
+            'log-id' => "required|exists:logs,id",
             'email-address' => 'required'
         ]);
         // create email if it doesn't exist on subscribers
@@ -80,7 +80,7 @@ class EmailController extends Controller
             return $email;
         });
 
-        $email->logs()->attach($request->input('post-id'));
+        $email->logs()->attach($request->input('log-id'));
         return redirect()->back()->with(['status' => 'subscription success']);
     }
 }

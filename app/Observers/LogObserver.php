@@ -31,10 +31,13 @@ class LogObserver
      */
     public function updated(Log $log): void
     {
+        $followers = $log->emails->pluck('address');
+        foreach($followers as $follower) {
+            // Mail::to($follower)->send(new NewPostMail($log));
+            // Mail::to($follower)->send(Mail::);
+        }
+
         // $followers = ['fingerman8910@gmail.com', 'khantzinlinn221@gmail.com'];
-        // foreach($followers as $follower) {
-        //     Mail::to($follower)->send(new NewPostMail($log));
-        // }
         // follwers
         //
     }
