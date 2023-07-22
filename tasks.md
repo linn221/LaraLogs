@@ -46,6 +46,7 @@
 * [d] shorten url to edit a post from the public page
 * [d] add visitors
 * [d] previous, next button on show page
+* [d] sort logs by watch count
 
 ### Bugs
 * [x] bootstrap-icons not working

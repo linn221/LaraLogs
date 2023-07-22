@@ -38,7 +38,7 @@
                                 class=" form-control @error('email-address') {{ 'is-invalid' }} @enderror"
                                 value="{{ old('email-address', '') }}" placeholder="your email">
                             <button class="btn btn-sm btn-dark">
-                                <i class=" bi bi-envelope"></i> WATCH
+                                <i class=" bi bi-envelope"></i> WATCH:{{ $log->emails->count() }}
                             </button>
                             @error('email-address')
                                 <div class="invalid-feedback">
@@ -79,18 +79,6 @@
             </div>
         @endif
     </div>
-    @auth
-        <div class="h4 mt-3">
-            Subscribers
-        </div>
-        <div class="list-group w-50">
-            @foreach ($log->emails as $email)
-                <div class=" list-group-item">
-                    {{ $email->address }}
-                </div>
-            @endforeach
-        </div>
-    @endauth
     </div>
 @endsection
 

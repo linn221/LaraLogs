@@ -47,6 +47,10 @@ class LogObserver
      */
     public function deleted(Log $log): void
     {
+        $followers = $log->emails;
+        foreach($followers as $follower) {
+            Mail::to($follower->address)->later(now()->addSeconds(4), new UpdatePostMail($log, $follower, 'deleted'));
+        }
         // $followers = $log->emails->pluck('address');
         // foreach($followers as $follower) {
         //     Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'deleted'));
@@ -59,6 +63,10 @@ class LogObserver
      */
     public function restored(Log $log): void
     {
+        $followers = $log->emails;
+        foreach($followers as $follower) {
+            Mail::to($follower->address)->later(now()->addSeconds(4), new UpdatePostMail($log, $follower, 'restored previously deleted'));
+        }
         // $followers = $log->emails->pluck('address');
         // foreach($followers as $follower) {
         //     Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'restored previously deleted'));

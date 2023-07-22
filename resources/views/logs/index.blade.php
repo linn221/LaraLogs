@@ -57,6 +57,7 @@
                             <th>Category</th>
                             <th>Tags</th>
                             <th>Control</th>
+                            <th>Followers</th>
                             <th>Updated At</th>
                             <th>Created At</th>
                         </tr>
@@ -99,6 +100,9 @@
                                             <x-buttons.icon :hLink="route('logs.restore', $log->id)" icon="arrow-clockwise" />
                                         @endif
                                     </div>
+                                </td>
+                                <td>
+                                    {{ $log->emails->count() }}
                                 </td>
                                 <td>
                                     <p class=" small mb-0">

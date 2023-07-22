@@ -51,7 +51,7 @@
                                 ])" hText='Category' />
                             </th>
                             <th>
-                                Tags
+                                watch
                             </th>
                             <th>
                                 <x-norm-link :hLink="route('page.index', [
@@ -67,25 +67,27 @@
                         @forelse ($logs as $log)
                             <tr>
                                 <td>
-                                    <x-norm-link :hLink="route('page.log', $log->id)" :hText="$log->title" class="text-dark" />
+                                    <x-norm-link :hLink="route('page.log', $log->id)" :hText="Str::limit($log->title, 40, '...')" class="text-dark" />
                                     <br>
                                     <span class=" small text-black-50">
-                                        {{ Str::limit($log->content, 30, '...') }}
+                                        {{ Str::limit($log->content, 50, '...') }}
                                     </span>
                                 </td>
 
                                 <td>
                                     <x-norm-link :hLink="route('page.category', $log->category->id)" :hText="$log->category->name" class="text-dark" />
-                                </td>
-
-                                <td>
-                                    {{-- copy & paste proudly from show view --}}
-                                    {{-- no more, with using component --}}
-                                    {{-- {{ dd($log->tags) }} --}}
+                                        <br>
                                     @foreach ($log->tags as $tag)
                                         <x-norm-link :hLink="route('page.tag', $tag->id)" :hText="$tag->name" prepend='#' />
                                     @endforeach
                                 </td>
+
+                                <td>
+                                    <div class="">
+                                        {{ $log->emails->count() }}
+                                    </div>
+                                </td>
+
                                 <td>
                                     <p class=" small mb-0">
                                         <i class=" bi bi-clock"></i>
