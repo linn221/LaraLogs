@@ -89,9 +89,15 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
+                                        @if (!$log->trashed())
                                         <x-buttons.icon :hLink="route('logs.show', $log->id)" icon="info" />
                                         <x-buttons.icon :hLink="route('logs.edit', $log->id)" icon="pencil" />
+                                        <x-buttons.icon :hLink="route('page.log', $log->id)" icon="eye" />
+                                        @endif
                                         <x-buttons.delete :action="route('logs.destroy', $log->id)" :id="$log->id" />
+                                        @if ($log->trashed())
+                                            <x-buttons.icon :hLink="route('logs.restore', $log->id)" icon="arrow-clockwise" />
+                                        @endif
                                     </div>
                                 </td>
                                 <td>

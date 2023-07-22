@@ -59,6 +59,7 @@
         (delete forms having the same id for different items)
 
 ### Fix
+* [@] add restore button, visitor button
 * [l] email unsubscribe link pointing to localhost, instead of 127.0.0.1
         something to do with queuing, which i cannot mind right now
 * [b] a log having duplicate tags, validation or something
