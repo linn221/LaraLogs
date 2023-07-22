@@ -18,12 +18,6 @@
                             test
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('logs.create') }}" class="nav-link">
-                            <i class=" bi bi-pencil-square"></i>
-                        </a>
-                    </li>
                 @endauth
             </ul>
 
@@ -45,38 +39,23 @@
                 @else
                     <li class="nav-item">
                         <a href="{{ route('logs.create') }}" class="nav-link">
+                            <i class=" bi bi-pencil-square"></i>
                             New Log
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="{{ route('logs.index') }}" class="nav-link">
+                            <i class=" bi bi-list-task"></i>
                             See Logs
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="{{ route('categories.index') }}" class="nav-link">
-                            View Categories
+                    <li class=" nav-item">
+                        <a href="{{ route('home') }}" class="nav-link link-dark">
+                            Dashboard
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('categories.create') }}" class="nav-link">
-                            Create Categories
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('tags.index') }}" class="nav-link">
-                            View Tags
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('tags.create') }}" class="nav-link">
-                            Create Tags
-                        </a>
-                    </li>
-
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
