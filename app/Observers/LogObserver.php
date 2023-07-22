@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Mail\NewPostMail;
+use App\Mail\UpdatePostMail;
 use App\Models\Email;
 use App\Models\Log;
 use Illuminate\Support\Facades\Mail;
@@ -33,6 +34,7 @@ class LogObserver
     {
         $followers = $log->emails->pluck('address');
         foreach($followers as $follower) {
+            Mail::to($follower)->later(now()->addSeconds(15), new UpdatePostMail($log));
             // Mail::to($follower)->send(new NewPostMail($log));
             // Mail::to($follower)->send(Mail::);
         }

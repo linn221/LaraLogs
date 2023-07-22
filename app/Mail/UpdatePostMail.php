@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Log;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,7 +17,7 @@ class UpdatePostMail extends Mailable implements ShouldQueue
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public Log $log)
     {
         //
     }
@@ -27,7 +28,7 @@ class UpdatePostMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Update Post Mail',
+            subject: 'Post updated',
         );
     }
 
@@ -37,7 +38,7 @@ class UpdatePostMail extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mail.update-post',
         );
     }
 
