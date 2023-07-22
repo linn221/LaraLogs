@@ -63,6 +63,7 @@
         something to do with queuing, which i cannot mind right now
 * [b] a log having duplicate tags, validation or something
 * [b] strained foreign key relationship, on casacade
+* [b] make sorting link dynamic to current url
 * [b] query getting their path lost, sorting 
 * [x] admin index, banner not showing because of updated url
 * [x] redirect to /home after authenticated, might have to redirect /home to /dashboard/home, but im not sure
@@ -88,6 +89,7 @@
 * [x] show the log once clicked on the title
 * [x] don't let guest users see admin tasks
 * [x] show status like 'logs under linux or frontend', 'showing logs by query' at index listing page
+* [c] dashboard link will have category, and tag resource links, and tidy the main nav bar
 * [d] ugly pagination UI
 * [d] create components for each log, detail log
 * [x] different for humans timestamp

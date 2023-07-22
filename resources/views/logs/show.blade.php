@@ -7,7 +7,7 @@
                 <div class=" mb-3">
                     <x-buttons.icon icon="pencil" :hLink="route('logs.edit', $log->id)" outline="primary" size="" />
                     <x-buttons.icon icon="list-task" :hLink="route('logs.index')" outline="dark" size="" />
-
+                    <x-buttons.icon icon="eye" :hLink="route('page.log', $log->id)" size="" outline="success"/>
                 </div>
 
                 <div>
