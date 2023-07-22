@@ -51,9 +51,6 @@ class LogObserver
         foreach($followers as $follower) {
             Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'deleted'));
         }
-        foreach($log->images as $image) {
-            Storage::delete($image);
-        }
         //
     }
 
@@ -74,7 +71,12 @@ class LogObserver
      */
     public function forceDeleted(Log $log): void
     {
+        // idea: makes a downloadable link to the post for a week or some time
         $followers = $log->emails->pluck('address');
+        foreach($log->images as $image) {
+            Storage::delete($image->uri);
+        }
+
         foreach($followers as $follower) {
             Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'permanently deleted'));
         }
