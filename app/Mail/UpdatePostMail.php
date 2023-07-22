@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Log;
+use App\Models\Email;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -17,7 +18,7 @@ class UpdatePostMail extends Mailable implements ShouldQueue
     /**
      * Create a new message instance.
      */
-    public function __construct(public Log $log, public string $action)
+    public function __construct(public Log $log, public Email $email, public string $action)
     {
         //
     }

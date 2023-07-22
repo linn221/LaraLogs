@@ -44,6 +44,16 @@
                 </div>
             @endif
         </div>
+        <div class="h4 mt-3">
+            Subscribers
+        </div>
+        <div class="list-group w-50">
+            @foreach ($log->emails as $email)
+                <div class=" list-group-item">
+                    {{ $email->address }}
+                </div>
+            @endforeach
+        </div>
     </div>
 @endsection
 

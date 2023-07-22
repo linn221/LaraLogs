@@ -9,6 +9,7 @@
         {{-- show tags here for later --}}
 
         <p>
-            you can unfollow the post <a href="#">here</a>
+            You can unfollow the post by the following link.
+        <x-hyper-link-mail :hLink="route('email.unfollow', ['token' => $email->token, 'email-address' => $email->address, 'log-id' => $log->id])" />
         </p>
 </p>

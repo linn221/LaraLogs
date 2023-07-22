@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    {{ $errors }}
     <div class=" container">
         <div class="row">
             <div class="col-12">
@@ -78,16 +79,18 @@
             </div>
         @endif
     </div>
-    <div class="h4 mt-3">
-        Subscribers
-    </div>
-    <div class="list-group w-50">
-        @foreach ($log->emails as $email)
-            <div class=" list-group-item">
-                {{ $email->address }}
-            </div>
-        @endforeach
-    </div>
+    @auth
+        <div class="h4 mt-3">
+            Subscribers
+        </div>
+        <div class="list-group w-50">
+            @foreach ($log->emails as $email)
+                <div class=" list-group-item">
+                    {{ $email->address }}
+                </div>
+            @endforeach
+        </div>
+    @endauth
     </div>
 @endsection
 

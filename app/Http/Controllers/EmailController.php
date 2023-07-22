@@ -83,4 +83,22 @@ class EmailController extends Controller
         $email->logs()->attach($request->input('log-id'));
         return redirect()->back()->with(['status' => 'subscription success']);
     }
+
+    public function unfollow(Request $request) {
+        $request->validate([
+            'log-id' => "required|exists:logs,id",
+            'email-address' => 'required:exists:emails,id',
+            'token' => 'required'
+        ]);
+
+        $log = Log::find($request->input('log-id'));
+        $email = Email::where('address', $request->input('email-address'))->first();
+
+        if ($request->input('token') == $email->token) {
+            $log->emails()->detach($email->id);
+            return redirect()->route('page.index')->with(['status' => 'unsubscribed the post successfully']);
+        }
+        return redirect()->back()->with(['status' => 'invalid token', 'status-color' => 'red']);
+    }
+
 }

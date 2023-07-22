@@ -43,6 +43,7 @@
 * [d] return to index page after editing a log, tags/$id, or categories/$id, needs a way to store that info elegantly
 * [d] hightlight matched strings in searching logs
 * [a] add slug
+* [d] shorten url to edit a post from the public page
 * [d] add visitors
 * [d] previous, next button on show page
 

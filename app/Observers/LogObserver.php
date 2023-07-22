@@ -32,9 +32,9 @@ class LogObserver
      */
     public function updated(Log $log): void
     {
-        $followers = $log->emails->pluck('address');
+        $followers = $log->emails;
         foreach($followers as $follower) {
-            Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'updated'));
+            Mail::to($follower->address)->later(now()->addSeconds(4), new UpdatePostMail($log, $follower, 'updated'));
         }
 
         // $followers = ['fingerman8910@gmail.com', 'khantzinlinn221@gmail.com'];
@@ -47,10 +47,10 @@ class LogObserver
      */
     public function deleted(Log $log): void
     {
-        $followers = $log->emails->pluck('address');
-        foreach($followers as $follower) {
-            Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'deleted'));
-        }
+        // $followers = $log->emails->pluck('address');
+        // foreach($followers as $follower) {
+        //     Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'deleted'));
+        // }
         //
     }
 
@@ -59,10 +59,10 @@ class LogObserver
      */
     public function restored(Log $log): void
     {
-        $followers = $log->emails->pluck('address');
-        foreach($followers as $follower) {
-            Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'restored previously deleted'));
-        }
+        // $followers = $log->emails->pluck('address');
+        // foreach($followers as $follower) {
+        //     Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'restored previously deleted'));
+        // }
         //
     }
 
@@ -72,13 +72,13 @@ class LogObserver
     public function forceDeleted(Log $log): void
     {
         // idea: makes a downloadable link to the post for a week or some time
-        $followers = $log->emails->pluck('address');
+        $followers = $log->emails;
         foreach($log->images as $image) {
             Storage::delete($image->uri);
         }
 
         foreach($followers as $follower) {
-            Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'permanently deleted'));
+            Mail::to($follower->address)->later(now()->addSeconds(4), new UpdatePostMail($log, $follower, 'permanently deleted'));
         }
         //
     }
