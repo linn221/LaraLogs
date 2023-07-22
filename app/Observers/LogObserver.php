@@ -34,9 +34,7 @@ class LogObserver
     {
         $followers = $log->emails->pluck('address');
         foreach($followers as $follower) {
-            Mail::to($follower)->later(now()->addSeconds(15), new UpdatePostMail($log));
-            // Mail::to($follower)->send(new NewPostMail($log));
-            // Mail::to($follower)->send(Mail::);
+            Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'updated'));
         }
 
         // $followers = ['fingerman8910@gmail.com', 'khantzinlinn221@gmail.com'];
@@ -49,11 +47,10 @@ class LogObserver
      */
     public function deleted(Log $log): void
     {
-        $followers = ['fingerman8910@gmail.com', 'khantzinlinn221@gmail.com'];
-        // foreach($followers as $follower) {
-        //     Mail::to($follower)->send(new NewPostMail($log));
-        // }
-        // follwers
+        $followers = $log->emails->pluck('address');
+        foreach($followers as $follower) {
+            Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'deleted'));
+        }
         foreach($log->images as $image) {
             Storage::delete($image);
         }
@@ -65,6 +62,10 @@ class LogObserver
      */
     public function restored(Log $log): void
     {
+        $followers = $log->emails->pluck('address');
+        foreach($followers as $follower) {
+            Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'restored previously deleted'));
+        }
         //
     }
 
@@ -73,6 +74,10 @@ class LogObserver
      */
     public function forceDeleted(Log $log): void
     {
+        $followers = $log->emails->pluck('address');
+        foreach($followers as $follower) {
+            Mail::to($follower)->later(now()->addSeconds(4), new UpdatePostMail($log, 'permanently deleted'));
+        }
         //
     }
 }

@@ -1,6 +1,6 @@
 <h3>Dear Subscriber,</h3>
 <p>
-    {{ env('APP_NAME') }} has updated the post you are follwing, <strong> {{ $log->title }} </strong>
+    {{ env('APP_NAME') }} has {{ $action }} the post you are follwing, <strong> {{ $log->title }} </strong>
 
     {{-- <strong>* {{ $update_title }}
     </strong> --}}

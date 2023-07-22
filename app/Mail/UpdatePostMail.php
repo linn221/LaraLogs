@@ -17,7 +17,7 @@ class UpdatePostMail extends Mailable implements ShouldQueue
     /**
      * Create a new message instance.
      */
-    public function __construct(public Log $log)
+    public function __construct(public Log $log, public string $action)
     {
         //
     }
@@ -28,7 +28,7 @@ class UpdatePostMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Post updated',
+            subject: 'Post ' . $this->action,
         );
     }
 
