@@ -59,6 +59,11 @@
                 <div class="card">
                     <div class="card-header">Manage Subscribers</div>
                     <div class="card-body">
+                        <div class="list-group">
+                            <a href="{{ route('show-subscribers') }}" class="list-group-item list-group-item-info">
+                                View Subscribers
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

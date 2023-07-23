@@ -32,6 +32,8 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::resource('/logs', LogController::class);
     Route::get('/logs/{log}/restore', [LogController::class, 'restore'])->name('logs.restore');
 
+    Route::get('/show-subscribers', [HomeController::class, 'showSubscribers'])->name('show-subscribers');
+
     Route::resource('/tags', TagController::class);
     Route::get('/tags/{tag}', [TagController::class, 'showLogs'])->name('logs.index.tag');
     Route::get('/categories/{category}', [CategoryController::class, 'showLogs'])->name('logs.index.category');
