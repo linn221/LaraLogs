@@ -30,7 +30,7 @@
 
 ### Features
 * [x] add status
-* [b] admin listing the subscribers, getting notified by email on config settings, schedule or every subscribe
+* [bl] admin listing the subscribers, getting notified by email on config settings, schedule or every subscribe
 * [l] add update title and text box for added paragraph, store the input with ** edit, and timestamp
 * [b] user profile, image, bio, a public one, and a private editable one
 * [c] fileter by updated, created date
@@ -64,15 +64,15 @@
 * [x] add restore button, visitor button
 * [l] email unsubscribe link pointing to localhost, instead of 127.0.0.1
         something to do with queuing, which i cannot mind right now
-* [b] a log having duplicate tags, validation or something
-* [b] strained foreign key relationship, on casacade
+* [l] a log having duplicate tags, validation or something
+* [bl] strained foreign key relationship, on casacade
 * [b] make sorting link dynamic to current url
 * [b] query getting their path lost, sorting 
 * [x] admin index, banner not showing because of updated url
 * [x] redirect to /home after authenticated, might have to redirect /home to /dashboard/home, but im not sure
         *edit, just create a route /home, after all, im not even sure the point of it
 * [c] images fucked
-* [b] many to many relationship, not casacding
+* [bl] many to many relationship, not casacding
 * [b] input lost when uploading image
 
 ### UI 

@@ -25,7 +25,6 @@ class PageController extends Controller
         // sorting & pagination
         $sort = $request->query('sort') ?? 'updated_at';
         $order = $request->query('order') ?? 'desc';
-        
         $logs = $query->orderBy($sort, $order)
         ->paginate(10)->withQueryString();
         return view('guest.index', compact('logs'));
@@ -46,9 +45,10 @@ class PageController extends Controller
             });
         });
         // dd($query->dd());
-        // sorting & pagination
-        $sort = 'updated_at';
-        $logs = $query->latest($sort)->paginate(10)->withQueryString();
+        $sort = $request->query('sort') ?? 'updated_at';
+        $order = $request->query('order') ?? 'desc';
+        $logs = $query->orderBy($sort, $order)
+        ->paginate(10)->withQueryString();
         return view('guest.index', compact('logs'));
     }
 
@@ -67,8 +67,10 @@ class PageController extends Controller
         });
         // dd($query->dd());
         // sorting & pagination
-        $sort = 'updated_at';
-        $logs = $query->latest($sort)->paginate(10)->withQueryString();
+        $sort = $request->query('sort') ?? 'updated_at';
+        $order = $request->query('order') ?? 'desc';
+        $logs = $query->orderBy($sort, $order)
+        ->paginate(10)->withQueryString();
         return view('guest.index', compact('logs'));
     }
 

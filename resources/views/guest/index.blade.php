@@ -39,13 +39,13 @@
                         <tr>
                             {{-- yellow, make them post request and store in sesssion? --}}
                             <th>
-                                <x-norm-link :hLink="route('page.index', [
+                                <x-norm-link :hLink="request()->fullUrlWithQuery([
                                     'sort' => 'title',
                                     'order' => request()->order == 'desc' ? 'asc' : 'desc',
                                 ])" hText='Title' />
                             </th>
                             <th>
-                                <x-norm-link :hLink="route('page.index', [
+                                <x-norm-link :hLink="request()->fullUrlWithQuery([
                                     'sort' => 'category_id',
                                     'order' => request()->order == 'desc' ? 'asc' : 'desc',
                                 ])" hText='Category' />
@@ -54,7 +54,7 @@
                                 watch
                             </th>
                             <th>
-                                <x-norm-link :hLink="route('page.index', [
+                                <x-norm-link :hLink="request()->fullUrlWithQuery([
                                     'sort' => 'created_at',
                                     'order' => request()->order == 'desc' ? 'asc' : 'desc',
                                 ])" hText='Posted' />
@@ -114,7 +114,7 @@
             </div>
             <div class="col-2">
                 <div class=" search-form mb-3">
-                    <form action="" class="">
+                    <form action="{{ request()->fullUrl() }}" class="">
                         <div class="input-group">
                             <input type="text" class=" form-control" name="q" value="{{ request()->q }}">
                             <button class=" btn btn-sm btn-dark">
