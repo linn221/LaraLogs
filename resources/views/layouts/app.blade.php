@@ -22,7 +22,7 @@
     <div id="app" class=" bg-body-secondary">
         @include('layouts.nav')
         @if ($errors->any())
-        <div class="text-success bg-dark">
+        <div class="text-success bg-dark p-3">
             {{ $errors }}
         </div>
         @endif
