@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,9 +17,15 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
+
 <body>
     <div id="app" class=" bg-body-secondary">
         @include('layouts.nav')
+        @if ($errors->any())
+        <div class="text-success bg-dark">
+            {{ $errors }}
+        </div>
+        @endif
 
         @include('layouts.status')
         <main class="py-4">
@@ -26,4 +33,5 @@
         </main>
     </div>
 </body>
+
 </html>

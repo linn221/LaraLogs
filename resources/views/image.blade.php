@@ -2,9 +2,6 @@
 
 @section('content')
 
-@if ($errors->any())
-{{ print_r($errors->all()); }}
-@endif
 
 <form action="{{ route('upload-image') }}" method="post" enctype="multipart/form-data">
     @csrf

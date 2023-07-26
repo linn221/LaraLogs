@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    {{-- {{ $errors }} --}}
     <div class=" container-sm">
 
             <form action="{{ route('upload-image') }}" id="imageForm" method="post" enctype="multipart/form-data">
