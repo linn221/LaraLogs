@@ -26,3 +26,16 @@ Enter your Email Address
         </div>
     @enderror
 </form>
+
+
+    <div class="list-group mt-3">
+        <div class=" list-group-item list-group-item-success">
+            Categories
+        </div>
+        @foreach (\App\Models\Category::all() as $category)
+            <div class="list-group-item">
+                <x-norm-link :hText="$category->name" :hLink="route('page.category', $category->id)" class=" text-dark"/>
+                {{-- {{ $category->name }} --}}
+            </div>
+        @endforeach
+    </div>
