@@ -27,4 +27,11 @@ class Log extends Model
         return $this->belongsToMany(Email::class);
     }
 
+    public function scopeSearch($query, string $keyword): void {
+        $query
+        ->where('title', 'like', "%$keyword%")
+        ->orWhere('content', 'like', "%$keyword%");
+    }
+
+
 }

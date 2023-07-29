@@ -19,8 +19,7 @@ class PageController extends Controller
         $query = Log::query();
         // searching
         $query->when($request->input('q'), function($query, string $q) {
-            $query->where('title', 'like', "%$q%")
-            ->orWhere('content', 'like', "%$q%");
+            $query->search($q);
         });
         // sorting & pagination
         $sort = $request->query('sort') ?? 'updated_at';
