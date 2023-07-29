@@ -86,8 +86,7 @@ class CategoryController extends Controller
         // searching
         $query->where(function ($query) use ($request) {
             $query->when($request->input('q'), function($query, string $q) {
-                $query->where('title', 'like', "%$q%")
-                ->orWhere('content', 'like', "%$q%");
+                $query->search($q);
             });
         });
         // sorting & pagination

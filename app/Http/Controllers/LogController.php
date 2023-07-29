@@ -26,8 +26,7 @@ class LogController extends Controller
 
         // searching
         $query->when($request->input('q'), function (Builder $query, string $q) {
-            $query->where('title', 'like', "%$q%")
-                ->orWhere('content', 'like', "%$q%");
+            $query->search($q);
         });
         // sorting & pagination
         $sort = 'updated_at';

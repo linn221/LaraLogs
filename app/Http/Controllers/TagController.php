@@ -29,8 +29,7 @@ class TagController extends Controller
             // Logical grouping, VERY critical
 
             $query->when($request->input('q'), function ($query, string $q) {
-                $query->where('title', 'like', "%$q%")
-                    ->orWhere('content', 'like', "%$q%");
+                $query->search($q);
             });
         });
         // dd($query->dd());
