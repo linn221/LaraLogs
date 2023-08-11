@@ -17,7 +17,7 @@ class LogController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Log::query();
+        $query = Log::query()->with('category', 'tags')->withCount('emails');
 
         // showing trash items
         $query->when($request->has('trash-bin'), function ($query) {
