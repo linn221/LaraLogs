@@ -20,6 +20,8 @@ class CoffeeController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $query = Log::with(['category', 'tags']);
+        dd($query->withCount('emails')->get());
         // $subscribers = Email::query()->where('subscribed_at')->get();
         return route('email.unsub', ['email' => 'shit', 'token' => 'slkdsfd']);
         $email = Email::first();

@@ -83,7 +83,7 @@
 
                                 <td>
                                     <div class="">
-                                        {{ $log->emails->count() }}
+                                        {{ $log->emails_count }}
                                     </div>
                                 </td>
 

@@ -16,7 +16,7 @@ class PageController extends Controller
         $this->validate($request, [
             'sort' => [Rule::in(['category_id', 'title', 'created_at'])]
         ]);
-        $query = Log::query();
+        $query = Log::with(['category', 'tags'])->withCount('emails');
         // searching
         $query->when($request->input('q'), function($query, string $q) {
             $query->search($q);
@@ -33,7 +33,8 @@ class PageController extends Controller
     public function tag(Request $request, Tag $tag)
     {
         // copy & paste from controller code
-        $query = $tag->logs();
+        // $query = $tag->logs();
+        $query = $tag->logs()->with(['category', 'tags']);
         // searching
         $query->where(function ($query) use ($request) {
             // Logical grouping, VERY critical
@@ -53,7 +54,7 @@ class PageController extends Controller
     public function category(Request $request, Category $category)
     {
         // copy & paste from controller code
-        $query = $category->logs();
+        $query = $category->logs()->with(['category', 'tags']);
         // searching
         $query->where(function ($query) use ($request) {
             // Logical grouping, VERY critical
