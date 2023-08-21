@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CoffeeController;
-use App\Http\Controllers\EmailController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\LogController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\UploadImage;
 use App\Models\Email;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UploadImage;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LogController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\EmailController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\CoffeeController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Auth::routes();
 
 // admin
 Route::middleware('auth')->prefix('dashboard')->group(function () {
-    Route::get('/', [LogController::class, 'index']);
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('/categories', CategoryController::class);
     Route::resource('/logs', LogController::class);
     Route::get('/logs/{log}/restore', [LogController::class, 'restore'])->name('logs.restore');
@@ -42,7 +43,6 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::delete('/images/{image}', [ImageController::class, 'destroy'])->name('delete-image');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 // index 
 // Route::middleware('auth')->get('/', [LogController::class, 'index'])->name('home');
 
