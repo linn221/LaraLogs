@@ -1,18 +1,18 @@
 @extends('layouts.app')
 @section('content')
     <div class=" container">
-        <div class="row">
+        <div class="row mx-5 px-4">
             <div class="col-12">
 
-                <div class=" mb-3">
+                {{-- <div class=" mb-3">
                     <x-buttons.icon icon="list-task" :hLink="route('page.index')" outline="dark" size="" />
-                </div>
+                </div> --}}
 
-                <div>
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <h4>
+                <div class=" mt-3">
+                    <div class="">
+                        <h1>
                             {{ $log->title }}
-                        </h4>
+                        </h1>
                         <div class="">
                             <span class=" badge bg-success me-2">
                                 <a href="{{ route('page.category', $log->category_id) }}"
@@ -23,49 +23,42 @@
                             @foreach ($log->tags as $tag)
                                 <x-norm-link :hLink="route('page.tag', $tag->id)" :hText="$tag->name" prepend='#' />
                             @endforeach
+
+                            <div class="d-inline-block p-1 pe-4 mb-3">
+                                <p class=" small mb-0">
+                                    <i class=" bi bi-clock"></i>
+                                    {{ $log->created_at->diffForHumans() }}
+                                    <i class=" bi bi-calendar"></i>
+                                    {{ $log->created_at->format('d M') }}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <form action="{{ route('email.follow') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="log-id" value="{{ $log->id }}">
-                        {{-- <label for="subscribe-mail" class=" form-label">
-        Enter your Email Address
-    </label> --}}
-
-                        <div class="input-group w-25 mt-4">
-                            <input type="email" name="email-address" id="subscribe-mail"
-                                class=" form-control @error('email-address') {{ 'is-invalid' }} @enderror"
-                                value="{{ old('email-address', '') }}" placeholder="your email">
-                            <button class="btn btn-sm btn-dark">
-                                <i class=" bi bi-envelope"></i> WATCH:{{ $log->emails->count() }}
-                            </button>
-                            @error('email-address')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                    </form>
                 </div>
                 <hr>
-                <div class=" border border-success d-inline-block p-1 pe-4 mb-3">
-                    <p class=" small mb-0">
-                        <i class=" bi bi-clock"></i>
-
-                        {{ $log->created_at->diffForHumans() }}
-                    </p>
-                    <p class=" small mb-0">
-                        <i class=" bi bi-calendar"></i>
-                        {{ $log->created_at->format('d M Y') }}
-                    </p>
-                </div>
-                <div class=" mb-3 border border-dark rounded-2 p-3">
+                <form action="{{ route('email.follow') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="log-id" value="{{ $log->id }}">
+                    <div class=" mb-3">
+                        <input type="email" name="email-address" id="subscribe-mail"
+                            class=" @error('email-address') {{ 'is-invalid' }} @enderror"
+                            value="{{ old('email-address', '') }}" placeholder="your email">
+                        <button class="btn btn-sm btn-dark">
+                            <i class=" bi bi-envelope"></i> :{{ $log->emails->count() }}
+                        </button>
+                        @error('email-address')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </form>
+                <div class="">
                     <p class="">
                         {{ $log->content }}
                     </p>
                 </div>
             </div>
-
-        </div>
         <hr>
         @if (!empty($log->images->toArray()))
             <div class=" mt-2">
@@ -77,6 +70,8 @@
 
             </div>
         @endif
+
+        </div>
     </div>
     </div>
 @endsection
