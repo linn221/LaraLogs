@@ -33,7 +33,7 @@
                     {{ $logs->onEachSide(1)->links() }}
                 </div>
 
-                <table class=" table table-warning">
+                <table class=" table">
                     <thead>
                         <tr>
                             {{-- yellow, make them post request and store in sesssion? --}}
