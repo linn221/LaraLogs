@@ -24,12 +24,14 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
 
 // admin
 Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::resource('/categories', CategoryController::class);
+
     Route::resource('/logs', LogController::class);
     Route::get('/logs/{log}/restore', [LogController::class, 'restore'])->name('logs.restore');
 
@@ -37,6 +39,8 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
 
     Route::resource('/tags', TagController::class);
     Route::get('/tags/{tag}', [TagController::class, 'showLogs'])->name('logs.index.tag');
+
+    Route::resource('/categories', CategoryController::class);
     Route::get('/categories/{category}', [CategoryController::class, 'showLogs'])->name('logs.index.category');
     Route::post('/upload-image', [ImageController::class, 'store'])->name('upload-image');
     Route::patch('/images/{image}', [ImageController::class, 'update'])->name('caption-image');
@@ -55,13 +59,13 @@ Route::controller(PageController::class)->group(function () {
 });
 
 // email subscription and following post
-Route::prefix('email')->group(function () {
-    Route::post('/subscribe', [EmailController::class, 'subscribe'])->name('email.sub');
-    Route::get('/unsubscribe', [EmailController::class, 'cancel'])->name('email.unsub');
-    Route::get('/subscribe-again', [EmailController::class, 'resubscribe'])->name('email.resub');
+Route::prefix('email')->controller(EmailController::class)->group(function () {
+    Route::post('/subscribe', 'subscribe')->name('email.sub');
+    Route::get('/unsubscribe', 'cancel')->name('email.unsub');
+    Route::get('/subscribe-again', 'resubscribe')->name('email.resub');
     
-    Route::post('/receive-updates', [EmailController::class, 'follow'])->name('email.follow');
-    Route::get('/unfollow', [EmailController::class, 'unfollow'])->name('email.unfollow');
+    Route::post('/receive-updates', 'follow')->name('email.follow');
+    Route::get('/unfollow', 'unfollow')->name('email.unfollow');
 });
 
 
