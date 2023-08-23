@@ -3,30 +3,30 @@
     <div class=" container-sm">
         <div class="row g-2">
             <div class="col-10">
-                <div class="">
+                <div class=" mb-3">
                     {{-- i know, DRY, component? --}}
                     @if (request()->is('tag/*'))
-                        <h3>
+                        <h4>
                             Showing logs under
                             <span class=" text-primary">
                                 #{{ request()->tag->name ?? 'bug' }}
                             </span>
                             @if ($logs->count() < 9)
-                                :{{ $logs->count() }}->
+                                ({{ $logs->count() }})
                             @endif
-                        </h3>
+                        </h4>
                     @endif
 
                     @if (request()->is('category/*'))
-                        <h3>
+                        <h4>
                             Showing logs in
                             <span class=" text-success">
                                 {{ request()->category->name ?? 'bug' }}
                             </span>
                             @if ($logs->count() < 9)
-                                : ({{ $logs->count() }})->
+                                ({{ $logs->count() }})
                             @endif
-                        </h3>
+                        </h4>
                     @endif
                 </div>
                 <div class="">
@@ -77,7 +77,7 @@
                                     <x-norm-link :hLink="route('page.category', $log->category->id)" :hText="$log->category->name" class="text-dark" />
                                         <br>
                                     @foreach ($log->tags as $tag)
-                                        <x-norm-link :hLink="route('page.tag', $tag->id)" :hText="$tag->name" prepend='#' />
+                                        <x-norm-link :hLink="route('page.tag', $tag->id)" :hText="$tag->name" prepend='#'/>
                                     @endforeach
                                 </td>
 
