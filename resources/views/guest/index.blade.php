@@ -17,9 +17,8 @@
                                 @endif
                             </h5>
                         </div>
-                    @endif
-
-                    @if (request()->is('category/*'))
+                        {{-- @endif --}}
+                    @elseif (request()->is('category/*'))
                         <div class="">
                             <h5>
                                 Showing logs in
@@ -31,12 +30,15 @@
                                 @endif
                         </div>
                         </h5>
+                        {{-- @endif --}}
+                    @else
+                        <div></div>
                     @endif
                     <div class=" search-form mb-1">
                         <form action="{{ request()->fullUrl() }}" class="">
                             <div class="input-group">
                                 <input type="text" class=" form-control" name="q" value="{{ request()->q }}">
-                                <button class=" btn btn-dark">
+                                <button class=" btn btn-secondary">
                                     <i class=" bi bi-search"></i>
                                 </button>
                             </div>
@@ -59,9 +61,6 @@
                                     'sort' => 'category_id',
                                     'order' => request()->order == 'desc' ? 'asc' : 'desc',
                                 ])" hText='Category' />
-                            </th>
-                            <th>
-                                watch
                             </th>
                             <th>
                                 <x-norm-link :hLink="request()->fullUrlWithQuery([
@@ -90,12 +89,6 @@
                                     @foreach ($log->tags as $tag)
                                         <x-norm-link :hLink="route('page.tag', $tag->id)" :hText="$tag->name" prepend='#' />
                                     @endforeach
-                                </td>
-
-                                <td class="">
-                                    <div class="">
-                                        {{ $log->emails_count }}
-                                    </div>
                                 </td>
 
                                 <td>

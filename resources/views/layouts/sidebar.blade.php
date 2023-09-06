@@ -18,20 +18,43 @@
 
 
 <div class="list-group mt-3">
-    <div class=" list-group-item list-group-item-success">
+    <div class=" list-group-item list-group-item-secondary">
         Categories
     </div>
-    @foreach (\App\Models\Category::all() as $category)
+    @foreach (\App\Models\Category::withCount('logs')->get() as $category)
         <div class="list-group-item">
-            <x-norm-link :hText="$category->name" :hLink="route('page.category', $category->id)" class=" text-dark" />
-            {{-- {{ $category->name }} --}}
+            <a href="{{ route('page.category', $category->id) }}" class=" text-decoration-none text-dark">
+                <div class="d-flex justify-content-between">
+                    <span>
+                        {{ $category->name }}
+                    </span>
+                    <span class="">
+
+                        {{ $category->logs_count }}
+                    </span>
+                </div>
+            </a>
         </div>
     @endforeach
 </div>
 
 <div class="list-group mt-3">
+    <div class="list-group-item list-group-item-secondary">
+        Tags
+    </div>
+    <div class="list-group-item">
+        {{-- @feature change font size according to number of posts --}}
+        @foreach (\App\Models\Tag::all() as $tag)
+            <x-norm-link :hLink="route('page.tag', $tag->id)" :hText="$tag->name" prepend='#' class=" fs-5"/>
+        @endforeach
+    </div>
+</div>
+
+<div class="list-group mt-3">
     <div class=" list-group-item list-group-item-success">
-        Recent Posts
+        Latest Posts
+        {{-- <i class=" bi bi-pin-angle">
+        </i> --}}
     </div>
 
     @forelse (\App\Models\Log::orderBy('updated_at')->limit(5)->get() as $recent)
