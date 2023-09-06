@@ -57,7 +57,7 @@
         </i> --}}
     </div>
 
-    @forelse (\App\Models\Log::orderBy('updated_at')->limit(5)->get() as $recent)
+    @forelse (\App\Models\Log::orderBy('updated_at')->limit(3)->get() as $recent)
         <a href="{{ route('page.log', $recent->id) }}" class=" text-decoration-none">
             <div class=" card mb-2">
                 <div class=" card-body">
@@ -70,7 +70,7 @@
                     <div class="card-text text-black-50">
                         <small>
                             <i class=" bi bi-clock"></i>
-                            {{ $log->created_at->diffForHumans() }}
+                            {{ $recent->created_at->diffForHumans() }}
                         </small>
                     </div>
                 </div>
