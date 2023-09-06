@@ -25,9 +25,9 @@ class PageController extends Controller
         $sort = $request->query('sort') ?? 'updated_at';
         $order = $request->query('order') ?? 'desc';
         $logs = $query->orderBy($sort, $order)
-        ->paginate(10)->withQueryString();
+            ->paginate(10)->withQueryString();
+        // $recent_logs = Log::orderBy('updated_at')->limit(3)->get();
         return view('guest.index', compact('logs'));
-
     }
 
     public function tag(Request $request, Tag $tag)

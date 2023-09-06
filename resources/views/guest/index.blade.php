@@ -1,36 +1,47 @@
 @extends('layouts.app')
 @section('content')
     <div class=" container-sm">
-        <div class="row g-2">
-            <div class="col-10">
-                <div class=" mb-3">
-                    {{-- i know, DRY, component? --}}
+        <div class="row g-4">
+            <div class="col-9">
+                {{-- i know, DRY, component? --}}
+                <div class=" d-flex justify-content-between align-items-center pb-3">
                     @if (request()->is('tag/*'))
-                        <h4>
-                            Showing logs under
-                            <span class=" text-primary">
-                                #{{ request()->tag->name ?? 'bug' }}
-                            </span>
-                            @if ($logs->count() < 9)
-                                ({{ $logs->count() }})
-                            @endif
-                        </h4>
+                        <div class="">
+                            <h5>
+                                Showing logs under
+                                <span class=" text-primary">
+                                    #{{ request()->tag->name ?? 'bug' }}
+                                </span>
+                                @if ($logs->count() < 9)
+                                    ({{ $logs->count() }})
+                                @endif
+                            </h5>
+                        </div>
                     @endif
 
                     @if (request()->is('category/*'))
-                        <h4>
-                            Showing logs in
-                            <span class=" text-success">
-                                {{ request()->category->name ?? 'bug' }}
-                            </span>
-                            @if ($logs->count() < 9)
-                                ({{ $logs->count() }})
-                            @endif
-                        </h4>
+                        <div class="">
+                            <h5>
+                                Showing logs in
+                                <span class=" text-success">
+                                    {{ request()->category->name ?? 'bug' }}
+                                </span>
+                                @if ($logs->count() < 9)
+                                    ({{ $logs->count() }})
+                                @endif
+                        </div>
+                        </h5>
                     @endif
-                </div>
-                <div class="">
-                    {{ $logs->onEachSide(1)->links() }}
+                    <div class=" search-form mb-1">
+                        <form action="{{ request()->fullUrl() }}" class="">
+                            <div class="input-group">
+                                <input type="text" class=" form-control" name="q" value="{{ request()->q }}">
+                                <button class=" btn btn-dark">
+                                    <i class=" bi bi-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
                 <table class=" table">
@@ -75,13 +86,13 @@
 
                                 <td>
                                     <x-norm-link :hLink="route('page.category', $log->category->id)" :hText="$log->category->name" class="text-dark" />
-                                        <br>
+                                    <br>
                                     @foreach ($log->tags as $tag)
-                                        <x-norm-link :hLink="route('page.tag', $tag->id)" :hText="$tag->name" prepend='#'/>
+                                        <x-norm-link :hLink="route('page.tag', $tag->id)" :hText="$tag->name" prepend='#' />
                                     @endforeach
                                 </td>
 
-                                <td>
+                                <td class="">
                                     <div class="">
                                         {{ $log->emails_count }}
                                     </div>
@@ -110,8 +121,11 @@
                         @endforelse
                     </tbody>
                 </table>
+                <div class="">
+                    {{ $logs->onEachSide(1)->links() }}
+                </div>
             </div>
-            <div class="col-2">
+            <div class="col-3">
                 @include('layouts.sidebar')
             </div>
         </div>
